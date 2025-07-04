@@ -1,0 +1,6 @@
+--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ..\APP -I ..\Hardware
+-I.\RTE\_TX
+-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include
+-ID:\Keil_v5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.6\Drivers\CMSIS\Device\ST\STM32G4xx\Include
+-D__UVISION_VERSION="527" -D_RTE_ -DSTM32G474xx -DUSE_HAL_DRIVER -DSTM32G474xx -D__USE_SOFT_SPI_INTERFACE__
+-o tx\appblepro.o --omf_browse tx\appblepro.crf --depend tx\appblepro.d "..\APP\AppBlePro.c"

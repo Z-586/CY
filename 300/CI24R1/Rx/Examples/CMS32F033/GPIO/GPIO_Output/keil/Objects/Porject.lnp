@@ -1,0 +1,27 @@
+--cpu Cortex-M0
+".\objects\system_cms32f033.o"
+".\objects\startup_cms32f033.o"
+".\objects\gpio.o"
+".\objects\system.o"
+".\objects\retarget.o"
+".\objects\uart.o"
+".\objects\opa.o"
+".\objects\pga.o"
+".\objects\adc1.o"
+".\objects\acmp.o"
+".\objects\main.o"
+".\objects\isr.o"
+".\objects\demo_gpio.o"
+".\objects\demo_uart.o"
+".\objects\demo_opa.o"
+".\objects\demo_pga.o"
+".\objects\demo_adc1.o"
+".\objects\demo_acmp.o"
+".\objects\crc_1.o"
+".\objects\delay.o"
+".\objects\temp.o"
+".\objects\drv_ci24r1.o"
+--strict --scatter ".\Objects\Porject.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Porject.map" -o .\Objects\Porject.axf
