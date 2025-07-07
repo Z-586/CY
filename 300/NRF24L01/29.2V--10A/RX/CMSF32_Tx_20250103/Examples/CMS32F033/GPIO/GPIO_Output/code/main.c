@@ -93,7 +93,7 @@ volatile uint32_t ADC24Value = 0;
 uint8_t system_start = 0;
 uint8_t ACMP_Status = 0;
 
-static uint8_t connect_time = 0;
+static uint16_t connect_time = 0;
 
 uint8_t V_I_envage_time = 0;
 uint8_t V_envage_state = 0;
@@ -375,7 +375,7 @@ int main(void)
 			}
 		}
 		connect_time++;
-		if(connect_time > 200)
+		if(connect_time > 500)
 			GPIO4->DO_f.P4 = 0;	
 		delay_xms(1);
 	}

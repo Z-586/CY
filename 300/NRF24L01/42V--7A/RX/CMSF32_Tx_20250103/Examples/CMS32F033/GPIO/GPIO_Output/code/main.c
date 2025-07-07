@@ -100,7 +100,7 @@ uint8_t V_envage_time = 0;
 
 uint8_t V_I_envage_time = 0;
 uint8_t V_envage_state = 0;
-
+static uint16_t connect_time = 0;
 static uint8_t V_CV_state = 0;
 /****************************************************************************/
 /*	Local type definitions('typedef')
@@ -378,8 +378,12 @@ int main(void)
 			if(tx_status == 0X20)  //NRF24L01模块发送数据并判断是否发送成功
 			{
 				//printf("Send is ok!\r\n");	
+				connect_time = 0;
 			}
 		}
+		connect_time++;
+		if(connect_time > 500)
+			GPIO4->DO_f.P4 = 0;	
 		delay_xms(1);
 	}
 }
