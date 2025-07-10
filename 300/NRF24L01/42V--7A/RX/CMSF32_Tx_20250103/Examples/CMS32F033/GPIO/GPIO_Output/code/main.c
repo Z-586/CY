@@ -98,6 +98,8 @@ uint8_t I_envage_time = 0;
 uint8_t V_envage = 20;
 uint8_t V_envage_time = 0;
 
+uint8_t V_V_time = 0;
+
 uint8_t V_I_envage_time = 0;
 uint8_t V_envage_state = 0;
 static uint16_t connect_time = 0;
@@ -121,7 +123,6 @@ static uint8_t  Temp_State = 0;
 static uint8_t  TX_RX_State = 0;
 extern unsigned char INIT_ADDR[5]; //节点地址
 uint16_t CRC_Value = 0;
-
 
 uint16_t Time_Out = 0;
 uint16_t Time_Count = 0;
@@ -331,13 +332,14 @@ int main(void)
 			tx_buf[0] = 0xAA;	
 			if (ACMP_Status == 0) {
 				if(V_envage_state == 0){
-					V_CV_state = 1;
+					FALL_State = 0;
 					tx_buf[1] = 0;
 					if(ADC_Value < I_MIN ){//2600
 						tx_buf[0] = 2;//快	
 					}
 					else if(ADC_Value >I_MAX){ 
 						tx_buf[0] = 1;//快
+						V_CV_state = 1;
 					}else{
 						if(!ADC1_IS_BUSY())
 						{	
@@ -350,19 +352,23 @@ int main(void)
 								tx_buf[0] = 1;
 							}
 						}
+						V_CV_state = 1;
 					}
-				}else{	
+				}else{
 					if(V_CV_state == 0){
 						if(ADC_V_Value < V_MAX){
 							if(ADC_Value < I_Set(1)){
-								V_envage_state = 0;
-								V_CV_state = 1;
+								if(V_V_time < 240){
+									tx_buf[1] = 0;
+									V_V_time++;
+									if(V_V_time == 240){
+										V_envage_state = 0;
+										V_CV_state = 1;
+									}
+								}
 							}
 						}
 					}
-//					if(ADC_V_Value < V_Set(42.2)){
-//						V_envage_state = 0;
-//					}
 					if(ADC_Value >I_Set(7)){ 
 						tx_buf[0] = 1;//快
 						V_CV_state = 1;
@@ -503,8 +509,8 @@ void Check_State(void){
 	if(ADC_V_Value > V_FALL_MAX){
 		if(ADC_Value < I_Fall){
 			FALL_State++;
-			if(FALL_State > 10){
-				FALL_State = 10;
+			if(FALL_State > 100){
+				FALL_State = 100;
 				tx_buf[1] = 5;
 				tx_buf[8] = usCRC16(tx_buf,8)>>8;
 				tx_buf[9] = usCRC16(tx_buf,8);
@@ -535,6 +541,6 @@ void check_test(void){
 		}			
 	}
 	
-	printf("Temp : %0.2f V_Value : %dV  I_Value : %d \r\n",Temp_Value,ADC_V_Value,ADC_Value);
+	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 } 
 

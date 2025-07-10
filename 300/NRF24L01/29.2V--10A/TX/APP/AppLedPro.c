@@ -50,7 +50,7 @@ static TimerHandle_t m_ble_green_red_timer;     /**< Definition of battery timer
 static void IO_Led_handler(TimerHandle_t xTimer)
 {
     UNUSED_PARAMETER(xTimer);
-	HAL_IWDG_Refresh(&hiwdg);
+	//HAL_IWDG_Refresh(&hiwdg);
 
     //µÆÉÁË¸
 	//IO_Led_Toggle();

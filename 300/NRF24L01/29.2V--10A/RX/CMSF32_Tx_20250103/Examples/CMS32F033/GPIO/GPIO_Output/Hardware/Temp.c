@@ -77,7 +77,7 @@ float CalculateTemperature(float fR)
 
 float V_Float(uint32_t AD_V){
 	float Value = (float)AD_V;
-	return Value*5.0*215/4096.0/15;
+	return Value*5.0*206.8/4096.0/6.8;
 }
 
 /*

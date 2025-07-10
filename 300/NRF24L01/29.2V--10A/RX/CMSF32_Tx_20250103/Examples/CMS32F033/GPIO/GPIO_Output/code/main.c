@@ -63,11 +63,11 @@ static uint8_t OVER_V_FLAG = 0;
 #define I_Fall I_Set(0.5)  
 
 #define V_MAX V_Set(Target_V+0.1)
-#define V_FALL_MAX V_Set(25)
+#define V_FALL_MAX V_Set(28)
 #define Temp_MAX 85  
 #define V_Max V_Set(Target_V + 2)  
-#define Check_V_MIN V_Set(20)  
-#define Check_V_MAX V_Set(60)  
+#define Check_V_MIN V_Set(16)  
+#define Check_V_MAX V_Set(32)  
 
 
 void check_test(void);
@@ -92,6 +92,7 @@ volatile uint32_t ADC24Value = 0;
 
 uint8_t system_start = 0;
 uint8_t ACMP_Status = 0;
+static uint8_t V_V_time = 0;
 
 static uint16_t connect_time = 0;
 
@@ -288,10 +289,11 @@ int main(void)
 	NRF24L01_Check( );
 	//¼ì²ânRF24L01
 	if(NRF24L01_Check( ) == 0){
-		//printf("NRF24L01  is  ok!\n\r");
+		printf("NRF24L01  is  ok!\n\r");
 	}
 	else{
-		//printf("NRF24L01  is  error!\n\r");
+		
+		printf("NRF24L01  is  error!\n\r");
 	}	
 	while(1)
 	{
@@ -327,12 +329,14 @@ int main(void)
 			tx_buf[0] = 0xAA;	
 			if (ACMP_Status == 0) {
 				if(V_envage_state == 0){
+					FALL_State = 0;
 					tx_buf[1] = 0;
 					if(ADC_Value < I_MIN ){
 						tx_buf[0] = 2;	
 					}
 					else if(ADC_Value >I_MAX){ 
 						tx_buf[0] = 1;
+						V_CV_state = 1;
 					}else{
 						if(!ADC1_IS_BUSY())
 						{	
@@ -351,8 +355,14 @@ int main(void)
 					if(V_CV_state == 0){
 						if(ADC_V_Value < V_MAX){
 							if(ADC_Value < I_Set(1)){
-								V_envage_state = 0;
-								V_CV_state = 1;
+								if(V_V_time < 240){
+									tx_buf[1] = 0;
+									V_V_time++;
+									if(V_V_time == 240){
+										V_envage_state = 0;
+										V_CV_state = 1;
+									}
+								}
 							}
 						}
 					}
@@ -527,6 +537,6 @@ void check_test(void){
 		}			
 	}
 	
-	printf("Temp : %0.2f V_Value : %dV  I_Value : %d \r\n",Temp_Value,ADC_V_Value,ADC_Value);
+	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 } 
 

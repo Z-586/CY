@@ -309,7 +309,7 @@ extern uint8_t					g_system_status;
 extern uint8_t	                RS485_Addr;
 extern uint8_t                  baud;
 extern uint16_t                 PwmFreq;
-extern const uint8_t 			NRF_IS_OK_STATE;
+extern uint8_t 					NRF_IS_OK_STATE;
 
 extern HRTIM_HandleTypeDef hhrtim1;
 extern IWDG_HandleTypeDef hiwdg;

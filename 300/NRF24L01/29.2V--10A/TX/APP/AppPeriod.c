@@ -421,7 +421,6 @@ void Period_task(void *pvParameters)
 	hall_ref = hall_ref*3/2;
 	while (1)
 	{
-		//PhotoelectricSignalOperation();		
 		TX_TEMPER_1();        //²É¼¯ÎÂ¶È1
 		Adc_deal();
 		if ((TXparameter.Tx_U_PFC > 360000) && (TXparameter.Tx_U_PFC <= 410000)) {
@@ -434,6 +433,7 @@ void Period_task(void *pvParameters)
 				} else {
 					if(NRF_IS_OK_STATE == 1)
 						PhotoelectricSignalOperation();	//	
+					Debug_Printf("NRF_IS_OK_STATE  is  %d!\n\r",NRF_IS_OK_STATE);
 					Check_TemperatureCurrent_Status();	
 					if (error_temperature) {
 						TXparameter.system_stat2 = PEND_TX_TEMP;	
