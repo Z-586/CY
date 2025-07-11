@@ -128,14 +128,14 @@ void start_task(void *argument)
 //		
 //	}
 				
-//    if (pdPASS != xTaskCreate((TaskFunction_t )Period_task,
-//                (const char*    )"Period_task",
-//                (uint16_t       )Period_STK_SIZE,
-//                (void*          )NULL,
-//                (UBaseType_t    )Period_TASK_PRIO,
-//   				(TaskHandle_t*  )&Period_task_Handler)) {
-//					
-//	}
+    if (pdPASS != xTaskCreate((TaskFunction_t )Period_task,
+                (const char*    )"Period_task",
+                (uint16_t       )Period_STK_SIZE,
+                (void*          )NULL,
+                (UBaseType_t    )Period_TASK_PRIO,
+   				(TaskHandle_t*  )&Period_task_Handler)) {
+					
+	}
 				
 //    if (pdPASS != xTaskCreate((TaskFunction_t )FaultHandler_task,            
 //                (const char*    )"FaultHandler_task",           

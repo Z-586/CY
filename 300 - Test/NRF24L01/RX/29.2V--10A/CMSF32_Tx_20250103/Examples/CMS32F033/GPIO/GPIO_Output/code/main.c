@@ -271,7 +271,7 @@ int main(void)
 	printf("Version:1.0.0\r\n");
 	SYS_SET_IOCFG(IOP21CFG,SYS_IOCFG_P21_GPIO);				//初始化 P21
 	GPIO_CONFIG_IO_MODE(GPIO2, GPIO_PIN_1, GPIO_MODE_OUTPUT);
-	GPIO2->DO_f.P1 = 0;										//低断，高通
+	GPIO2->DO_f.P1 = 1;										//低断，高通
 	//保护引脚  过温、过压、过流
 	SYS_SET_IOCFG(IOP26CFG,SYS_IOCFG_P26_GPIO);				//初始化 P26
 	GPIO_CONFIG_IO_MODE(GPIO2, GPIO_PIN_6, GPIO_MODE_OUTPUT);
@@ -288,17 +288,17 @@ int main(void)
 	NRF24L01_Check( );
 	//检测nRF24L01
 	if(NRF24L01_Check( ) == 0){
-		//printf("NRF24L01  is  ok!\n\r");
+		printf("NRF24L01  is  ok!\n\r");
 	}
 	else{
-		//printf("NRF24L01  is  error!\n\r");
+		printf("NRF24L01  is  error!\n\r");
 	}	
 	while(1)
 	{
 		check_test();
-		if(GPIO2->DO_f.P1 == 1){
-			break;
-		}
+//		if(GPIO2->DO_f.P1 == 1){
+//			break;
+//		}
 	}
 	RX_Mode(0);
 	while(1)

@@ -85,7 +85,7 @@ typedef enum IRQn
 #include "system_cms32f033.h"
 
 #define Target_I  10
-#define Target_V  27.2
+#define Target_V  29.2
 
 #define SUCCESS  0
 #define ERROR    -1

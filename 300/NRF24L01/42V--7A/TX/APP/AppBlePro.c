@@ -16,7 +16,7 @@ static uint16_t rx_error_time = 0;
 static TimerHandle_t m_parse_date_timer;        	/**< Definition of battery timer. */
 float Rx_Temp = 0;
 uint16_t CRC_Value = 0;
-const uint8_t NRF_IS_OK_STATE = 0;
+uint8_t NRF_IS_OK_STATE = 0;
 static uint8_t STM32_ID[12] ={0};
 uint8_t TX_RX_status = 0;
 static uint8_t pwm_start_flag = 0;
@@ -178,10 +178,8 @@ void BlePro_task(void *pvParameters)
 	if(pdPASS != xTimerStart(m_parse_date_timer, 0)){}
 	NRF24L01_Init();
 	//¼ì²ânRF24L01
-	uint8_t* P_NRF_IS_OK_STATE = (uint8_t*)malloc(1);
-	P_NRF_IS_OK_STATE = (uint8_t*)&NRF_IS_OK_STATE;
 	if(NRF24L01_Check( ) == 0){
-		*P_NRF_IS_OK_STATE = 1;
+		NRF_IS_OK_STATE = 1;
 		Debug_Printf("NRF24L01  is  ok!\n\r");
 	}
 	else{
@@ -189,13 +187,13 @@ void BlePro_task(void *pvParameters)
 		g_tx_system_stat = STATE_FLAGE_ERROR;
 		vTaskDelay(1000);
 		if(NRF24L01_Check( ) == 0){
-			*P_NRF_IS_OK_STATE = 1;
+			NRF_IS_OK_STATE = 1;
 		}
 		else{
 			g_tx_system_stat = STATE_FLAGE_ERROR;
 			vTaskDelay(5000);
 			if(NRF24L01_Check( ) == 0)
-				*P_NRF_IS_OK_STATE = 1;
+				NRF_IS_OK_STATE = 1;
 			else{
 				g_tx_system_stat = STATE_FLAGE_ERROR;
 				TXparameter.system_stat2 = ERR_NRF24L01;
@@ -203,8 +201,6 @@ void BlePro_task(void *pvParameters)
 			}
 		}
 	}
-	P_NRF_IS_OK_STATE = NULL;
-	free(P_NRF_IS_OK_STATE);
 	TX_Mode(0);		
 	vTaskDelay(2000);
 	PwmFreq = Set_140K;	

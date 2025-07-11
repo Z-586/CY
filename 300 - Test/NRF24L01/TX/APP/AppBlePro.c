@@ -174,16 +174,40 @@ void Get_CPU_ID(void){
 void BlePro_task(void *pvParameters)
 {	
 
-	PwmFreq = SET_PWM_Freq(85000);
-	Start_PWM();
-	for (int i = 1; i < 46; i++) {
-		hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
-		hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - i)) / 100;
-		hhrtim1.Instance->sTimerxRegs[0].CMP3xR = (PwmFreq * i) / 100;
-		vTaskDelay(20);
-	}
+//	PwmFreq = SET_PWM_Freq(110000);
+//	Start_PWM();
+//	for (int i = 1; i < 46; i++) {
+//		hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
+//		hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - i)) / 100;
+//		hhrtim1.Instance->sTimerxRegs[0].CMP3xR = (PwmFreq * i) / 100;
+//		vTaskDelay(20);
+//	}
+
 	while(1){
-		vTaskDelay(2000);
+		if (TXparameter.power_on == 1) {
+			if(pwm_start_flag == 0){
+				PwmFreq = 19428;
+				Start_PWM();
+				for (int i = 1; i < 46; i++) {
+					hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
+					hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - i)) / 100;
+					hhrtim1.Instance->sTimerxRegs[0].CMP3xR = (PwmFreq * i) / 100;
+					vTaskDelay(20);
+				}
+				vTaskDelay(200);
+				PwmFreq = SET_PWM_Freq(110000);
+				hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
+				hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - 46)) / 100;
+				hhrtim1.Instance->sTimerxRegs[0].CMP3xR = (PwmFreq * 46) / 100;
+				
+				pwm_start_flag = 1;
+			}
+		} else {
+			if(pwm_start_flag == 1){
+				pwm_start_flag = 0;
+			}
+		}
+		vTaskDelay(100);
 	}
 }  
 
