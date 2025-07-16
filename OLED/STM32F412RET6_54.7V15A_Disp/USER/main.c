@@ -247,52 +247,53 @@ float CalculateTemperature(float fR)
 
 void user1_LCD_Display(void)
 {
-	Show_Str(121, 20, WHITE, BLACK, "卡珀林智能科技有限公司", 32, 1);
-	Gui_Drawbmp16(0, 0, gImage_logo_120x80);
+	//Show_Str(121, 20, WHITE, BLACK, "卡珀林智能科技有限公司", 32, 1);
+	//Gui_Drawbmp16(0, 0, gImage_logo_120x80);
 }
 
+#define Move 40
 
 void user2_LCD_Display(void)
 {
 //	rx_i = 10000;
-//	rx_u = 35000;
+//	rx_u = 48000;
 //	tx_i = 666;
 //	tx_u = 380000;
 //	rx_e = 100;
 	rx_i_disp = rx_i;
 	sprintf(buf_i,"%5.2f", rx_i_disp/1000);
-	Show_Str(10-8,  98, WHITE, BLACK, "输出电流:", 32, 0);
-	Show_Str(159-13, 98, WHITE, BLACK, (uint8_t *)buf_i, 32, 0);
-	Show_Str(243-17, 98, WHITE, BLACK, "A", 32, 0); //246
+	Show_Str(10-8,  98 - Move, WHITE, BLACK, "输出电流:", 32, 0);
+	Show_Str(159-13, 98 - Move, WHITE, BLACK, (uint8_t *)buf_i, 32, 0);
+	Show_Str(243-17, 98 -Move, WHITE, BLACK, "A", 32, 0); //246
 	
 	rx_u_disp = rx_u;
 	sprintf(buf_u,"%5.2f", rx_u_disp/1000);
-	Show_Str(10-8, 163, WHITE, BLACK, "输出电压:", 32, 0);
-	Show_Str(159-13,163, WHITE, BLACK, (uint8_t *)buf_u, 32, 0);
-	Show_Str(243-17,163, WHITE, BLACK, "V", 32, 0);
+	Show_Str(10-8, 163-Move, WHITE, BLACK, "输出电压:", 32, 0);
+	Show_Str(159-13,163-Move, WHITE, BLACK, (uint8_t *)buf_u, 32, 0);
+	Show_Str(243-17,163-Move, WHITE, BLACK, "V", 32, 0);
 	
 	tx_i_disp = tx_i;
 	sprintf(buf_i,"%3.2f", tx_i_disp/1000);
-	Show_Str(245,  98, WHITE, BLACK, "输入电流:", 32, 0);
-	Show_Str(389, 98, WHITE, BLACK, (uint8_t *)buf_i, 32, 0);
-	Show_Str(453, 98, WHITE, BLACK, "A", 32, 0); //246
+	Show_Str(245,  98-Move, WHITE, BLACK, "输入电流:", 32, 0);
+	Show_Str(389, 98-Move, WHITE, BLACK, (uint8_t *)buf_i, 32, 0);
+	Show_Str(453, 98-Move, WHITE, BLACK, "A", 32, 0); //246
 	
 	tx_u_disp = tx_u;
 	sprintf(buf_u,"%3d", tx_u_disp/1000);
-	Show_Str(245,  163, WHITE, BLACK, "输入电压:", 32, 0);
-	Show_Str(389+16, 163, WHITE, BLACK, (uint8_t *)buf_u, 32, 0);
-	Show_Str(453, 163, WHITE, BLACK, "V", 32, 0); //246
+	Show_Str(245,  163-Move, WHITE, BLACK, "输入电压:", 32, 0);
+	Show_Str(389+16, 163-Move, WHITE, BLACK, (uint8_t *)buf_u, 32, 0);
+	Show_Str(453, 163-Move, WHITE, BLACK, "V", 32, 0); //246
 	
 	sprintf(buf_e,"%3d", rx_e);
-	Show_Str(10, 227, WHITE, BLACK, "效率:", 32, 0);
-	Show_Str(159,227, WHITE, BLACK, (uint8_t *)buf_e, 32, 0); 
-	Show_Str(212,227, WHITE, BLACK, "%", 32, 0);
+	Show_Str(10, 227-Move, WHITE, BLACK, "效率:", 32, 0);
+	Show_Str(159,227-Move, WHITE, BLACK, (uint8_t *)buf_e, 32, 0); 
+	Show_Str(212,227-Move, WHITE, BLACK, "%", 32, 0);
 	
 	rx_p = rx_i*rx_u/1000000;
 	sprintf(buf_p,"%03d", rx_p);
-	Show_Str(250,227, WHITE, BLACK, "功率:", 32, 0);
-	Show_Str(399,227, WHITE, BLACK, (uint8_t *)buf_p, 32, 0);
-	Show_Str(452,227, WHITE, BLACK, "W", 32, 0);
+	Show_Str(250,227-Move, WHITE, BLACK, "功率:", 32, 0);
+	Show_Str(399,227-Move, WHITE, BLACK, (uint8_t *)buf_p, 32, 0);
+	Show_Str(452,227-Move, WHITE, BLACK, "W", 32, 0);
 }
 
 
@@ -549,7 +550,7 @@ void Comm_task(void *pvParameters)
 {
 	while(1)
 	{
-		xSemaphoreTake(Uart2Semaphore, portMAX_DELAY);
+		//xSemaphoreTake(Uart2Semaphore, portMAX_DELAY);
 		if (USART2_RX_BUF[0] == 0x3A) {
 			//Debug_Printf("hello world.\r\n");
 			xTimerStop(CommDataTimeOut_Handle, 0);
@@ -565,6 +566,7 @@ void Comm_task(void *pvParameters)
 		}
 		memset(USART2_RX_BUF, 0, USART_REC_LEN);
 		USART2_RX_STA = 0;
+		vTaskDelay(200);
 	}
 }
 	
