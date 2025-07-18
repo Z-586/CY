@@ -20,7 +20,8 @@ void Zero_Action(void);
 #define Z_Max 50
 #define Z_Min 0
 
-int8_t X_Y_Z_Position[3];
+int8_t X_Y_Z_Position[6];
+int8_t Check_X_Y_Z_Position[6];
 
 uint8_t  CRC8_Value;
 
@@ -50,6 +51,10 @@ static int16_t X_Will_GO_Count = 0;
 static int16_t Y_Will_GO_Count = 0;
 static int16_t Z_Will_GO_Count = 0;
 
+static uint8_t X_IS_OK = 0;
+static uint8_t Y_IS_OK = 0;
+static uint8_t Z_IS_OK = 0;
+
 static uint8_t AT24C02_Flag = 0;
 int main(void)
 {
@@ -65,34 +70,54 @@ int main(void)
 	Z_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Z_DIR_IO);
 	while (1)
 	{
-		if(AT24C02_Flag == 0){
-			
-			
-		}else{
-			if(Timer_Flag == 1){
-				if((X_Go_Zero_Flag == 2) && (Y_Go_Zero_Flag == 2) && (Z_Go_Zero_Flag == 2)){
-					if (Serial_GetRxFlag() == 1)
-					{
-						CRC8_Value = CRC8(Serial_RxPacket,15);
-						if(Serial_RxPacket[0] == 0xAA){
-							if(Serial_RxPacket[15] == CRC8_Value){
-								// x y z有个函数，计算绝对位置脉冲数
-								X_Y_Z_Position[0] = (int8_t)Serial_RxPacket[1];
-								X_Y_Z_Position[1] = (int8_t)Serial_RxPacket[2];
-								X_Y_Z_Position[2] = (int8_t)Serial_RxPacket[3];
-								Get_Change_Puls(X_Y_Z_Position[0],X_Y_Z_Position[1],X_Y_Z_Position[2]);
-								//TIM_SetAutoreload(TIM2,1000);//1000 1ms
-							}
+		if(Timer_Flag == 1){
+			if((X_Go_Zero_Flag == 2) && (Y_Go_Zero_Flag == 2) && (Z_Go_Zero_Flag == 2)){
+				if (Serial_GetRxFlag() == 1)
+				{
+					CRC8_Value = CRC8(Serial_RxPacket,15);
+					if(Serial_RxPacket[0] == 0xAA){
+						if(Serial_RxPacket[15] == CRC8_Value){
+							// x y z有个函数，计算绝对位置脉冲数
+							X_Y_Z_Position[0] = (int8_t)Serial_RxPacket[1];
+							X_Y_Z_Position[1] = (int8_t)Serial_RxPacket[2];
+							X_Y_Z_Position[2] = (int8_t)Serial_RxPacket[3];
+							Get_Change_Puls(X_Y_Z_Position[0],X_Y_Z_Position[1],X_Y_Z_Position[2]);
+							//TIM_SetAutoreload(TIM2,1000);//1000 1ms
+						}
+					}else{
+						Serial_SendArray(Serial_RxPacket, 16);			
+					}
+				}
+				if(X_IS_OK == 1 && Y_IS_OK == 1 && Z_IS_OK == 1){
+					at24cxx_write_byte(0,X_Y_Z_Position,6);
+					Delay_ms(50);
+					at24cxx_read_byte(0,Check_X_Y_Z_Position,6);
+					for(int i =0;i < 6; i++){
+						if(Check_X_Y_Z_Position[i] != X_Y_Z_Position[i]){
+						
 						}else{
-							Serial_SendArray(Serial_RxPacket, 16);			
+							X_IS_OK = 0;
+							Y_IS_OK = 0;
+							Z_IS_OK = 0;
 						}
 					}
+				}
+			}else if((X_Go_Zero_Flag == 3) || (Y_Go_Zero_Flag == 3) || (Z_Go_Zero_Flag == 3)){
+				//记录当前位置，报警告
+			
+			}
+			else{
+				if(AT24C02_Flag == 0){
+					at24cxx_read_byte(0,X_Y_Z_Position,6);
+					
+					LED1_Turn();//读取存储数据
 				}else{
 					Zero_Action();
 					Motor_start();
-				}
-				Timer_Flag = 0;
+					LED2_Turn();
+				}			
 			}
+			Timer_Flag = 0;
 		}
 	}
 }
@@ -131,6 +156,8 @@ void Motor_GD_Check(void){
 		}
 	}else{
 		GD_X_Open_number = 0;
+		if(X_Go_Zero_Flag == 3)
+			X_Go_Zero_Flag = 2;
 	}
 	//Y
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 0) {
@@ -143,6 +170,9 @@ void Motor_GD_Check(void){
 		}
 	}else{
 		GD_Y_Open_number = 0;
+		if(Y_Go_Zero_Flag == 3)
+			Y_Go_Zero_Flag = 2;
+
 	}
 	//Z
 	if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0) {
@@ -155,6 +185,8 @@ void Motor_GD_Check(void){
 		}
 	}else{
 		GD_Z_Open_number = 0;
+		if(Z_Go_Zero_Flag == 3)
+			Z_Go_Zero_Flag = 2;
 	}
 }
 
@@ -163,7 +195,6 @@ void TIM2_IRQHandler(void)
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
 	{
 		Timer_Flag = 1;
-	
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
 }
@@ -237,8 +268,10 @@ void Motor_start(void)
 				if(X_Puls_Count >= X_Will_GO_Count){
 					X_Puls_Count = 0;
 					X_Puls_number = X_New_Puls_number;
+					X_Y_Z_Position[3] = X_DIR_Flag;
 					GPIO_ResetBits(GPIOA, X_Step_IO);
 					X_Go_Zero_Flag = 2;
+					X_IS_OK = 1;
 				}
 			}
 			else
@@ -260,8 +293,10 @@ void Motor_start(void)
 				if(Y_Puls_Count >= Y_Puls_number){
 					Y_Puls_Count = 0;
 					Y_Puls_number = Y_New_Puls_number;
+					X_Y_Z_Position[4] = Y_DIR_Flag;
 					GPIO_ResetBits(GPIOA, Y_Step_IO);
 					Y_Go_Zero_Flag = 2;
+					Y_IS_OK = 1;
 				}
 			}
 			else
@@ -283,8 +318,10 @@ void Motor_start(void)
 				if(Z_Puls_Count >= Z_Will_GO_Count){
 					Z_Puls_Count = 0;
 					Z_Puls_number = Z_New_Puls_number;
+					X_Y_Z_Position[5] = Z_DIR_Flag;
 					GPIO_ResetBits(GPIOA, Z_Step_IO);
 					Z_Go_Zero_Flag = 2;
+					Z_IS_OK = 1;
 				}
 			}
 			else

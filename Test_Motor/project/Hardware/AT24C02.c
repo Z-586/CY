@@ -22,7 +22,7 @@ void AT24C02_WriteReg(uint8_t RegAddress, uint8_t Data)
 	Delay_ms(5);
 }
 
-void at24cxx_write_byte(uint8_t reg, uint8_t *pdata, uint16_t size)
+void at24cxx_write_byte(uint8_t reg, int8_t *pdata, uint16_t size)
 {
     uint16_t i;
     for(i = 0; i < size; i++)
@@ -49,7 +49,7 @@ uint8_t AT24C02_ReadReg(uint8_t RegAddress)
 	return Data;
 }
 
-void at24cxx_read_byte(uint8_t reg, uint8_t *pdata, uint16_t size)
+void at24cxx_read_byte(uint8_t reg, int8_t *pdata, uint16_t size)
 {
     uint8_t i;
     /* 接收数据 */
