@@ -290,9 +290,9 @@ void user2_LCD_Display(void)
 	Show_Str(212,227-Move, WHITE, BLACK, "%", 32, 0);
 	
 	rx_p = rx_i*rx_u/1000000;
-	sprintf(buf_p,"%03d", rx_p);
+	sprintf(buf_p,"%04d", rx_p);
 	Show_Str(250,227-Move, WHITE, BLACK, "¹¦ÂÊ:", 32, 0);
-	Show_Str(399,227-Move, WHITE, BLACK, (uint8_t *)buf_p, 32, 0);
+	Show_Str(389,227-Move, WHITE, BLACK, (uint8_t *)buf_p, 32, 0);
 	Show_Str(452,227-Move, WHITE, BLACK, "W", 32, 0);
 }
 

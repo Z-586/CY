@@ -56,6 +56,7 @@ static uint8_t Y_IS_OK = 0;
 static uint8_t Z_IS_OK = 0;
 
 static uint8_t AT24C02_Flag = 0;
+static uint8_t AT24C02_Check_Flag = 0;
 int main(void)
 {
 	Timer_Init();
@@ -90,15 +91,17 @@ int main(void)
 				}
 				if(X_IS_OK == 1 && Y_IS_OK == 1 && Z_IS_OK == 1){
 					at24cxx_write_byte(0,X_Y_Z_Position,6);
-					Delay_ms(50);
+					Delay_ms(100);
 					at24cxx_read_byte(0,Check_X_Y_Z_Position,6);
 					for(int i =0;i < 6; i++){
 						if(Check_X_Y_Z_Position[i] != X_Y_Z_Position[i]){
-						
-						}else{
+							AT24C02_Check_Flag++;
+						}
+						if(AT24C02_Check_Flag == 6){
 							X_IS_OK = 0;
 							Y_IS_OK = 0;
 							Z_IS_OK = 0;
+							AT24C02_Check_Flag = 0;
 						}
 					}
 				}
@@ -109,7 +112,24 @@ int main(void)
 			else{
 				if(AT24C02_Flag == 0){
 					at24cxx_read_byte(0,X_Y_Z_Position,6);
+					Delay_ms(50);
+					X_Puls_number = X_Y_Z_Position[0]*4*32/1.8;
+					Y_Puls_number = X_Y_Z_Position[1]*4*32/1.8;
+					Z_Puls_number = X_Y_Z_Position[2]*4*32/1.8;
 					
+					X_DIR_Flag = X_Y_Z_Position[3];
+					Y_DIR_Flag = X_Y_Z_Position[4];
+					Z_DIR_Flag = X_Y_Z_Position[5];
+					if (GPIO_ReadOutputDataBit(GPIOA, X_DIR_IO) != X_DIR_Flag)
+						Motor_Dir(X_DIR_IO,X_DIR_Flag);
+					if (GPIO_ReadOutputDataBit(GPIOA, Y_DIR_IO) != Y_DIR_Flag)
+						Motor_Dir(Y_DIR_IO,Y_DIR_Flag);
+					if (GPIO_ReadOutputDataBit(GPIOA, Z_DIR_IO) != Z_DIR_Flag)
+						Motor_Dir(Z_DIR_IO,Z_DIR_Flag);	
+					
+					X_Go_Zero_Flag = 2;
+					Y_Go_Zero_Flag = 2;
+					Z_Go_Zero_Flag = 2;
 					LED1_Turn();//¶ÁÈ¡´æ´¢Êý¾Ý
 				}else{
 					Zero_Action();
@@ -121,8 +141,6 @@ int main(void)
 		}
 	}
 }
-
-
 
 void Get_Change_Puls(int8_t x_pos,int8_t y_pos,int8_t z_pos){	
 	X_New_Puls_number = x_pos*4*32/1.8;
@@ -153,6 +171,7 @@ void Motor_GD_Check(void){
 				X_Go_Zero_Flag = 1;
 			if(X_Go_Zero_Flag == 2)
 				X_Go_Zero_Flag = 3;
+			GD_X_Open_number = 10;
 		}
 	}else{
 		GD_X_Open_number = 0;
@@ -167,6 +186,7 @@ void Motor_GD_Check(void){
 				Y_Go_Zero_Flag = 1;
 			else if(Y_Go_Zero_Flag == 2)
 				Y_Go_Zero_Flag = 3;
+			GD_X_Open_number = 10;
 		}
 	}else{
 		GD_Y_Open_number = 0;
@@ -182,6 +202,7 @@ void Motor_GD_Check(void){
 				Z_Go_Zero_Flag = 1;
 			else if(Z_Go_Zero_Flag == 2)
 				Z_Go_Zero_Flag = 3;
+			GD_X_Open_number = 10;
 		}
 	}else{
 		GD_Z_Open_number = 0;
