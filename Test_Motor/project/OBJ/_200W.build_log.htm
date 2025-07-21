@@ -1,0 +1,91 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.27.0.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: C ChongYue, C, LIC=9WSKC-7ABXE-561Q2-9HH9U-5IIFG-7I579
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.27.0.0
+Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.27.0.0
+Dialog DLL:      DCM.DLL V1.17.2.0
+Target DLL:      Segger\JL2CM3.dll V2.99.34.0
+Dialog DLL:      TCM.DLL V1.36.1.0
+ 
+<h2>Project:</h2>
+D:\ChongYue\Desktop\CY\Test_Motor\project\USER\FreeRTOS.uvprojx
+Project File Date:  07/18/2025
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'FreeRTOS'
+compiling main.c...
+..\APP\main.c(32): warning:  #188-D: enumerated type mixed with another type
+  static BitAction X_DIR_Flag = 0;
+..\APP\main.c(33): warning:  #188-D: enumerated type mixed with another type
+  static BitAction Y_DIR_Flag = 0;
+..\APP\main.c(34): warning:  #188-D: enumerated type mixed with another type
+  static BitAction Z_DIR_Flag = 0;
+..\APP\main.c(70): warning:  #188-D: enumerated type mixed with another type
+  	X_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, X_DIR_IO);
+..\APP\main.c(71): warning:  #188-D: enumerated type mixed with another type
+  	Y_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Y_DIR_IO);
+..\APP\main.c(72): warning:  #188-D: enumerated type mixed with another type
+  	Z_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Z_DIR_IO);
+..\APP\main.c(122): warning:  #188-D: enumerated type mixed with another type
+  					X_DIR_Flag = X_Y_Z_Position[3];
+..\APP\main.c(123): warning:  #188-D: enumerated type mixed with another type
+  					Y_DIR_Flag = X_Y_Z_Position[4];
+..\APP\main.c(124): warning:  #188-D: enumerated type mixed with another type
+  					Z_DIR_Flag = X_Y_Z_Position[5];
+..\APP\main.c(74): warning:  #128-D: loop is not reachable
+  	while (1)
+..\APP\main.c(237): warning:  #188-D: enumerated type mixed with another type
+  			Motor_Dir(X_DIR_IO,0);
+..\APP\main.c(238): warning:  #188-D: enumerated type mixed with another type
+  			X_DIR_Flag = 0;
+..\APP\main.c(248): warning:  #188-D: enumerated type mixed with another type
+  			Motor_Dir(Y_DIR_IO,0);
+..\APP\main.c(249): warning:  #188-D: enumerated type mixed with another type
+  			Y_DIR_Flag = 0;
+..\APP\main.c(259): warning:  #188-D: enumerated type mixed with another type
+  			Motor_Dir(Z_DIR_IO,0);
+..\APP\main.c(260): warning:  #188-D: enumerated type mixed with another type
+  			Z_DIR_Flag = 0;
+..\APP\main.c(291): warning:  #188-D: enumerated type mixed with another type
+  				X_DIR_Flag = !X_DIR_Flag;
+..\APP\main.c(317): warning:  #188-D: enumerated type mixed with another type
+  				Y_DIR_Flag = !Y_DIR_Flag;
+..\APP\main.c(342): warning:  #188-D: enumerated type mixed with another type
+  				Z_DIR_Flag = !Z_DIR_Flag;
+..\APP\main.c: 19 warnings, 0 errors
+linking...
+Program Size: Code=14336 RO-data=268 RW-data=96 ZI-data=1056  
+FromELF: creating hex file...
+After Build - User command #1: fromelf --bin --output ../OBJ/_200W.bin ../OBJ/_200W.axf
+"..\OBJ\_200W.axf" - 0 Error(s), 19 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
+                Keil.STM32F1xx_DFP.2.3.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_FreeRTOS
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
