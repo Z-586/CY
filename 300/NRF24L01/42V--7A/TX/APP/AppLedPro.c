@@ -50,7 +50,7 @@ static TimerHandle_t m_ble_green_red_timer;     /**< Definition of battery timer
 static void IO_Led_handler(TimerHandle_t xTimer)
 {
     UNUSED_PARAMETER(xTimer);
-//	HAL_IWDG_Refresh(&hiwdg);
+	HAL_IWDG_Refresh(&hiwdg);
 
     //µÆÉÁË¸
 	//IO_Led_Toggle();
@@ -232,7 +232,7 @@ void LedProc_task(void *pvParameters)
 	uint8_t _tx_system_stat = 0;
 	uint8_t _led_stat = 0;
 
-	m_io_led_timer 		    = xTimerCreate("IO_LED",  	         500,  pdTRUE,  NULL, IO_Led_handler);
+	m_io_led_timer 		    = xTimerCreate("IO_LED",  	         100,  pdTRUE,  NULL, IO_Led_handler);
 	m_ble_blue_timer  		= xTimerCreate("BLE_BLUE_LED",   	1000,  pdTRUE,  NULL, BleBlue_handler);
 	m_ble_red_timer         = xTimerCreate("BLE_RED_LED",   	 200,  pdTRUE,  NULL, BleRed_handler);
 	m_ble_green_timer       = xTimerCreate("BLE_GREEN_LED",   	1000,  pdTRUE,  NULL, BleGreen_handler);

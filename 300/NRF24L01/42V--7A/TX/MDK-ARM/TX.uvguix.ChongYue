@@ -97,10 +97,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>104</Top>
-        <Left>104</Left>
-        <Right>1129</Right>
-        <Bottom>623</Bottom>
+        <Top>97</Top>
+        <Left>166</Left>
+        <Right>1191</Right>
+        <Bottom>769</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>
@@ -1861,18 +1861,18 @@
       <ActiveTab>4</ActiveTab>
       <Doc>
         <Name>../Core/Src/main.c</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>19</ColumnNumber>
         <TopLine>120</TopLine>
-        <CurrentLine>43</CurrentLine>
+        <CurrentLine>127</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>..\APP\AppBlePro.c</Name>
-        <ColumnNumber>16</ColumnNumber>
-        <TopLine>230</TopLine>
-        <CurrentLine>236</CurrentLine>
+        <ColumnNumber>31</ColumnNumber>
+        <TopLine>176</TopLine>
+        <CurrentLine>181</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -1888,18 +1888,18 @@
       </Doc>
       <Doc>
         <Name>..\APP\AppPeriod.c</Name>
-        <ColumnNumber>46</ColumnNumber>
-        <TopLine>430</TopLine>
-        <CurrentLine>436</CurrentLine>
+        <ColumnNumber>27</ColumnNumber>
+        <TopLine>415</TopLine>
+        <CurrentLine>437</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>..\APP\AppLedPro.c</Name>
-        <ColumnNumber>34</ColumnNumber>
-        <TopLine>43</TopLine>
-        <CurrentLine>11</CurrentLine>
+        <ColumnNumber>0</ColumnNumber>
+        <TopLine>225</TopLine>
+        <CurrentLine>50</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

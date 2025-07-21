@@ -309,6 +309,7 @@ int main(void)
 	while(1)
 	{
 		if(TX_RX_State == 0){
+			connect_time = 0;
 			rx_status = NRF24L01_RxPacket(rx_buf);
 			if(rx_status == 0x00){
 				CRC_Value = usCRC16(rx_buf,8);
@@ -388,9 +389,14 @@ int main(void)
 			}
 		}
 		connect_time++;
-		if(connect_time > 500)
-			GPIO4->DO_f.P4 = 0;	
+		if(connect_time > 500){
+			printf("nrf_Timeout!\r\n");
+			GPIO_OFF_Config();			
+		}
+		if(GPIO4->DO_f.P4 == 0)
+			GPIO_OFF_Config();
 		delay_xms(1);
+		
 	}
 }
 

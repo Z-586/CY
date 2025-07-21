@@ -134,7 +134,7 @@ unsigned char NRF24L01_Write_Buf(unsigned char regaddr, unsigned char *pBuf, uns
 unsigned char NRF24L01_TxPacket(unsigned char *txbuf)
 {
 	unsigned char state;
-	
+	uint16_t ERROR = 0;
 	RF24L01_SET_CE_LOW( );
 	NRF24L01_Write_Buf(WR_TX_PLOAD,txbuf,TX_Ten_WIDTH);	//写数据到TX BUF  32个字节
 	RF24L01_SET_CE_HIGH( );									//启动发送

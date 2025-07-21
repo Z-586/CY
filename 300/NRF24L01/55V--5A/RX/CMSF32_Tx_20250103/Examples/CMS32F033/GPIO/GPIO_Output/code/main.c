@@ -385,7 +385,9 @@ int main(void)
 		}
 		connect_time++;
 		if(connect_time > 500)
-			GPIO4->DO_f.P4 = 0;	
+			GPIO_OFF_Config();		
+		if(GPIO4->DO_f.P4 == 0)
+			GPIO_OFF_Config();
 		delay_xms(1);
 	}
 }

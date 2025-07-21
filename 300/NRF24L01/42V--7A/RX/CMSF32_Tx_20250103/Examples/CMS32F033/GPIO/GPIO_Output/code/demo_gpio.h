@@ -66,6 +66,7 @@ extern "C"
  ** \note	
 *****************************************************************************/
 void GPIO_Config(void);
+void GPIO_OFF_Config(void);
 
 
 #ifdef __cplusplus

@@ -66,7 +66,8 @@ static uint8_t OVER_V_FLAG = 0;
 #define V_FALL_MAX V_Set(28)
 #define Temp_MAX 85  
 #define V_Max V_Set(Target_V + 2)  
-#define Check_V_MIN V_Set(16)  
+#define Check_V_MIN V_Set(20)
+
 #define Check_V_MAX V_Set(32)  
 
 
@@ -380,13 +381,16 @@ int main(void)
 			tx_status = NRF24L01_TxPacket(tx_buf);
 			if(tx_status == 0X20)  //NRF24L01模块发送数据并判断是否发送成功
 			{
-				//printf("Send is ok!\r\n");	
+//				printf("Send is ok!,tx_buf[0] = %d;\r\n",tx_buf[0]);	
 				connect_time = 0;
 			}
 		}
 		connect_time++;
 		if(connect_time > 500)
-			GPIO4->DO_f.P4 = 0;	
+			GPIO_OFF_Config();		
+		if(GPIO4->DO_f.P4 == 0)
+			GPIO_OFF_Config();
+		
 		delay_xms(1);
 	}
 }
@@ -501,7 +505,7 @@ void Check_State(void){
 		}
 /***********/
 //		printf("ADDR:%.2x %.2x %.2x %.2x %.2x \r\n",INIT_ADDR[0],INIT_ADDR[1],INIT_ADDR[2],INIT_ADDR[3],INIT_ADDR[4]);
-		printf("ACMP_Status ：%d Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",ACMP_Status,Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
+//		printf("ACMP_Status ：%d Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",ACMP_Status,Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 	}	
 	if(ADC_V_Value > V_FALL_MAX){
 		if(ADC_Value < I_Fall){
@@ -533,10 +537,11 @@ void check_test(void){
 				GPIO2->DO_f.P1 = 1;
 				OVER_V_FLAG = 1;
 				delay_xms(10);
+//				printf("MOS_IS_ON\r\n");
 			}				
 		}			
 	}
 	
-	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
+//	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 } 
 
