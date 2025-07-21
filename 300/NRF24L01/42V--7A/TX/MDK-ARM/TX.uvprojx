@@ -1797,6 +1797,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\AppLedPro.c</FilePath>
             </File>
+            <File>
+              <FileName>AppRS485Proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\AppRS485Proc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

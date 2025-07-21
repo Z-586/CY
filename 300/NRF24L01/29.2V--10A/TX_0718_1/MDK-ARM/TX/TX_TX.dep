@@ -1868,7 +1868,11 @@ I (..\Hardware\drv_spi.h)(0x685E0F72)
 I (../Core/Inc/hrtim.h)(0x685E543E)
 I (..\APP\AppBlePro.h)(0x686B3612)
 I (..\APP\AppFaultHandler.h)(0x60B74320)
+<<<<<<< HEAD
 F (..\APP\AppRS485Proc.c)(0x687DE6C5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ..\APP -I ..\Hardware-I.\RTE\_TX-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.6\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32G474xx -DUSE_HAL_DRIVER -DSTM32G474xx -D__USE_SOFT_SPI_INTERFACE__-o tx\apprs485proc.o --omf_browse tx\apprs485proc.crf --depend tx\apprs485proc.d)
+=======
+F (..\APP\AppRS485Proc.c)(0x6879CA94)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ..\APP -I ..\Hardware-I.\RTE\_TX-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.6\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32G474xx -DUSE_HAL_DRIVER -DSTM32G474xx -D__USE_SOFT_SPI_INTERFACE__-o tx\apprs485proc.o --omf_browse tx\apprs485proc.crf --depend tx\apprs485proc.d)
+>>>>>>> 7333de6952446f8274de7a0a72425d392f4c1a38
 I (..\APP\includes.h)(0x6879AAD0)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x68467EA2)
 I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)

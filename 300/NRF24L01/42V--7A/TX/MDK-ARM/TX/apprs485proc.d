@@ -54,8 +54,9 @@ tx\apprs485proc.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h
 tx\apprs485proc.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h
 tx\apprs485proc.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h
 tx\apprs485proc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-tx\apprs485proc.o: ..\Hardware\drv_ci24r1.h
-tx\apprs485proc.o: ../Core/Inc/gpio.h
+tx\apprs485proc.o: ..\Hardware\drv_rf24L01.h
+tx\apprs485proc.o: ..\Hardware\drv_spi.h
 tx\apprs485proc.o: ../Core/Inc/main.h
+tx\apprs485proc.o: ../Core/Inc/hrtim.h
 tx\apprs485proc.o: ..\APP\AppBlePro.h
 tx\apprs485proc.o: ..\APP\AppFaultHandler.h

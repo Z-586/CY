@@ -63,14 +63,20 @@ int main(void)
 	Serial_Init();
 	LED_Init();
 	GD_Init();
+<<<<<<< HEAD
 	Motor_Init();
+=======
+>>>>>>> 7333de6952446f8274de7a0a72425d392f4c1a38
 	AT24C02_Init();
 	AT24C02_Flag = at24c02_check();
 	AT24C02_Flag = at24c02_check();
 	X_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, X_DIR_IO);
 	Y_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Y_DIR_IO);
 	Z_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Z_DIR_IO);
+<<<<<<< HEAD
 	while(1);
+=======
+>>>>>>> 7333de6952446f8274de7a0a72425d392f4c1a38
 	while (1)
 	{
 		if(Timer_Flag == 1){
@@ -218,6 +224,7 @@ void TIM2_IRQHandler(void)
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
 	{
 		Timer_Flag = 1;
+<<<<<<< HEAD
 		if (GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_1) == 0)
 		{
 			GPIO_SetBits(GPIOA, GPIO_Pin_1);
@@ -226,6 +233,8 @@ void TIM2_IRQHandler(void)
 		{
 			GPIO_ResetBits(GPIOA, GPIO_Pin_1);
 		}
+=======
+>>>>>>> 7333de6952446f8274de7a0a72425d392f4c1a38
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
 }

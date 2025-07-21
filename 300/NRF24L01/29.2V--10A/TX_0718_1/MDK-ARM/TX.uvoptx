@@ -240,7 +240,11 @@
 
   <Group>
     <GroupName>Application/User/Core</GroupName>
+<<<<<<< HEAD
     <tvExp>1</tvExp>
+=======
+    <tvExp>0</tvExp>
+>>>>>>> 7333de6952446f8274de7a0a72425d392f4c1a38
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
