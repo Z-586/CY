@@ -59,18 +59,21 @@ static uint8_t AT24C02_Flag = 0;
 static uint8_t AT24C02_Check_Flag = 0;
 int main(void)
 {
+	Motor_Init();
 	Timer_Init();
 	Serial_Init();
 	LED_Init();
 	GD_Init();
-	Motor_Init();
-	AT24C02_Init();
-	AT24C02_Flag = at24c02_check();
-	AT24C02_Flag = at24c02_check();
+//	AT24C02_Init();
+//	AT24C02_Flag = at24c02_check();
+//	AT24C02_Flag = at24c02_check();
 	X_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, X_DIR_IO);
 	Y_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Y_DIR_IO);
 	Z_DIR_Flag = GPIO_ReadOutputDataBit(GPIOA, Z_DIR_IO);
-	while(1);
+	while(1){
+		LED1_Turn();
+		Delay_ms(500);
+	}
 	while (1)
 	{
 		if(Timer_Flag == 1){
@@ -218,13 +221,13 @@ void TIM2_IRQHandler(void)
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
 	{
 		Timer_Flag = 1;
-		if (GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_1) == 0)
+		if (GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_0) == 0)
 		{
-			GPIO_SetBits(GPIOA, GPIO_Pin_1);
+			GPIO_SetBits(GPIOA, GPIO_Pin_0);
 		}
 		else
 		{
-			GPIO_ResetBits(GPIOA, GPIO_Pin_1);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_0);
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
