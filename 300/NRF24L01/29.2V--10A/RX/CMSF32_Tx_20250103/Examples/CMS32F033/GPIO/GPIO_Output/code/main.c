@@ -44,6 +44,7 @@
 #include "CRC1.h"
 #include "delay.h"
 #include "Temp.h"
+#include "RS485.h"
 
 uint16_t I_Set(float I_set_number){
 	return 4096.0*16.816*4.0/200.0/5.0*I_set_number;
@@ -128,6 +129,12 @@ uint16_t Delay_Time_Out = 0;
 uint16_t Delay_Time_Count = 0;
 uint16_t ADC_Real_V_Value = 0; 
 uint16_t ADC_Real_I_Value = 0; 
+
+uint8_t U_ReceiveData[16] ={0};
+volatile uint32_t U_RxdFlag =0;
+
+uint8_t U_SendData[16]={0};
+volatile uint32_t U_TxdFlag =0;
 
 float I_Float(uint32_t AD_I){
 	float Value = (float)AD_I;
@@ -267,7 +274,7 @@ int main(void)
 	GPIO_Config();
 	
 	drv_spi_init( );
-	UART_UART1_Config();
+//	UART_UART1_Config();
 	delay_xms(200);
 	printf("Version:1.0.0\r\n");
 	SYS_SET_IOCFG(IOP21CFG,SYS_IOCFG_P21_GPIO);				//≥ı ºªØ P21
@@ -539,4 +546,3 @@ void check_test(void){
 	
 	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 } 
-

@@ -64,7 +64,7 @@ extern "C"
  ** \return  none
  ** \note	
 *****************************************************************************/
-void UART_UART1_Config(void);
+void UART_UART1_Config(uint32_t Baud);
 
 
 #ifdef __cplusplus

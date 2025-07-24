@@ -63,21 +63,34 @@
  ** \return  none
  ** \note	
 *****************************************************************************/
-void UART_UART1_Config(void)
+void UART_UART1_Config(uint32_t Baud)
 {
-	uint32_t  BuadRate = 115200;
 	/*
-	(1)设置UARTx模式
+	1.设置UART 模式
 	*/
-	UART_ConfigRunMode(UART1, BuadRate, UART_WLS_8, UART_PARITY_NONE,UART_STOP_BIT_1);
+	UART_ConfigRunMode(UART1, Baud, UART_WLS_8, UART_PARITY_NONE,UART_STOP_BIT_1);
+	
+	UART_EnableAuto(UART1);
+	UART_EnableFIFO(UART1,FIFO_L1_4BYTE, FIFO_L0_1BYTE, FIFO_RST_EN, FIFO_RST_EN);	
+	
 	/*
-	(2)开启UARTx时钟
+	2.设置UART 时钟
 	*/	
 	SYS_EnablePeripheralClk(SYS_CLK_UART1_MSK);
 	/*
-	(3)开启UARTx输出
-	*/		
-	SYS_SET_IOCFG(IOP34CFG, SYS_IOCFG_P34_TXD1);	
+	3.设置UART 接口
+	*/	
+	SYS_SET_IOCFG(IOP32CFG,SYS_IOCFG_P32_RXD1);	
+	SYS_SET_IOCFG(IOP34CFG,SYS_IOCFG_P34_TXD1);	
+
+	/*
+	4.设置UART 中断
+	*/	
+	
+	UART_EnableTHREInt(UART1);
+	UART_EnableRBRInt(UART1);
+	NVIC_SetPriority(UART1_IRQn,3);	
+	NVIC_EnableIRQ(UART1_IRQn); 
 }
 
 

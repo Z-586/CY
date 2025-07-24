@@ -35,3 +35,4 @@
 .\objects\main.o: ..\Hardware\CRC1.h
 .\objects\main.o: ..\Hardware\delay.h
 .\objects\main.o: ..\Hardware\Temp.h
+.\objects\main.o: ..\Hardware\RS485.h

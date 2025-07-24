@@ -493,11 +493,6 @@
               <FilePath>..\code\demo_acmp.c</FilePath>
             </File>
             <File>
-              <FileName>crc_1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\crc_1.c</FilePath>
-            </File>
-            <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\delay.c</FilePath>
@@ -506,6 +501,16 @@
               <FileName>Temp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\Temp.c</FilePath>
+            </File>
+            <File>
+              <FileName>RS485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\RS485.c</FilePath>
+            </File>
+            <File>
+              <FileName>RS485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\RS485.h</FilePath>
             </File>
           </Files>
         </Group>
