@@ -57,6 +57,7 @@ tx\usart.o: ..\Hardware\drv_rf24L01.h
 tx\usart.o: ..\Hardware\drv_spi.h
 tx\usart.o: ../Core/Inc/main.h
 tx\usart.o: ../Core/Inc/hrtim.h
+tx\usart.o: ..\Hardware\Flash.h
 tx\usart.o: ..\APP\AppBlePro.h
 tx\usart.o: ..\APP\AppFaultHandler.h
 tx\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
