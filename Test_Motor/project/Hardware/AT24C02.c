@@ -1,6 +1,6 @@
 #include "stm32f10x.h"                  // Device header
 #include "MyI2C.h"
-#include "Delay.h"
+#include "config_delay.h"
 
 #define AT24C02_ADDRESS		0xA0
 

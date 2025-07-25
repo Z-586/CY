@@ -1,0 +1,97 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.27.0.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 1, 1, LIC=0VRMM-X7KB9-TLUCD-8U5SR-Q86HP-DSFZS
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.27.0.0
+Toolchain Path:  D:\software_installation\MDK5.27\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.27.0.0
+Dialog DLL:      DCM.DLL V1.17.2.0
+Target DLL:      UL2CM3.DLL V1.162.7.0
+Dialog DLL:      TCM.DLL V1.36.1.0
+ 
+<h2>Project:</h2>
+C:\Users\29654\Desktop\劳常文共享\外包\B-步进电机控制\步进电机控制代码\USER\STM32-DEMO.uvprojx
+Project File Date:  03/10/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\software_installation\MDK5.27\ARM\ARMCC\Bin'
+Build target 'STM32-DEMO'
+compiling stm32f10x_gpio.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+..\FWlib\src\stm32f10x_gpio.c: 1 warning, 2 errors
+compiling main.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+main.c: 1 warning, 2 errors
+compiling system_stm32f10x.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+..\CMSIS\system_stm32f10x.c: 1 warning, 2 errors
+compiling misc.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+..\FWlib\src\misc.c: 1 warning, 2 errors
+compiling stm32f10x_it.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+stm32f10x_it.c: 1 warning, 2 errors
+compiling stm32f10x_tim.c...
+..\CMSIS\stm32f10x.h(298): error:  #67: expected a "}"
+    ADC1_2_IRQn                 = 18,     /*!< ADC1 and ADC2 global Interrupt                       */
+..\CMSIS\stm32f10x.h(472): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\CMSIS\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+    #include "stm32f10x_conf.h"
+..\FWlib\src\stm32f10x_tim.c: 1 warning, 2 errors
+compiling core_cm3.c...
+"..\Output\STM32-DEMO.axf" - 12 Error(s), 6 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
+                Keil.STM32F1xx_DFP.2.3.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_STM32-DEMO
+  D:\software_installation\MDK5.27\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:00
+</pre>
+</body>
+</html>

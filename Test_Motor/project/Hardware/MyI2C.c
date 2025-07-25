@@ -1,22 +1,22 @@
 #include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+#include "config_delay.h"
 
 void MyI2C_W_SCL(uint8_t BitValue)
 {
-	GPIO_WriteBit(GPIOB, GPIO_Pin_10, (BitAction)BitValue);
+	GPIO_WriteBit(GPIOB, GPIO_Pin_6, (BitAction)BitValue);
 	Delay_us(10);
 }
 
 void MyI2C_W_SDA(uint8_t BitValue)
 {
-	GPIO_WriteBit(GPIOB, GPIO_Pin_11, (BitAction)BitValue);
+	GPIO_WriteBit(GPIOB, GPIO_Pin_7, (BitAction)BitValue);
 	Delay_us(10);
 }
 
 uint8_t MyI2C_R_SDA(void)
 {
 	uint8_t BitValue;
-	BitValue = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11);
+	BitValue = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_7);
 	Delay_us(10);
 	return BitValue;
 }
@@ -27,11 +27,11 @@ void MyI2C_Init(void)
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
-	GPIO_SetBits(GPIOB, GPIO_Pin_10 | GPIO_Pin_11);
+	GPIO_SetBits(GPIOB, GPIO_Pin_6 | GPIO_Pin_7);
 }
 
 void MyI2C_Start(void)
