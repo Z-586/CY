@@ -102,10 +102,6 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-void RS485_Proc_task(void *pvParameters)
-{
-	
-}
 
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
@@ -155,14 +151,14 @@ void start_task(void *argument)
 					
 	}
 				
-//	if (pdPASS != xTaskCreate((TaskFunction_t )RS485_Proc_task,
-//                (const char*    )"RS485_Proc_task",
-//                (uint16_t       )RS485Proc_STK_SIZE,
-//                (void*          )NULL,
-//                (UBaseType_t    )RS485Proc_TASK_PRIO,
-//                (TaskHandle_t*  )&RS485ProcTask_Handler)) {
-//					
-//	}
+	if (pdPASS != xTaskCreate((TaskFunction_t )RS485_Proc_task,
+                (const char*    )"RS485_Proc_task",
+                (uint16_t       )RS485Proc_STK_SIZE,
+                (void*          )NULL,
+                (UBaseType_t    )RS485Proc_TASK_PRIO,
+                (TaskHandle_t*  )&RS485ProcTask_Handler)) {
+					
+	}
 				
 	BleSendSemaphore 		  =	xSemaphoreCreateBinary();
 	RS485DataSemaphore        =	xSemaphoreCreateBinary();

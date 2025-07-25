@@ -56,5 +56,6 @@ tx\appledpro.o: ..\Hardware\drv_rf24L01.h
 tx\appledpro.o: ..\Hardware\drv_spi.h
 tx\appledpro.o: ../Core/Inc/main.h
 tx\appledpro.o: ../Core/Inc/hrtim.h
+tx\appledpro.o: ..\Hardware\Flash.h
 tx\appledpro.o: ..\APP\AppBlePro.h
 tx\appledpro.o: ..\APP\AppFaultHandler.h

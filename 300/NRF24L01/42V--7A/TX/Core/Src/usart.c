@@ -36,10 +36,17 @@ PUTCHAR_PROTOTYPE
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart5;
+uint8_t  USART5_RX_BUF[USART_REC_LEN]; 
+uint8_t  aRxBuffer_5[1];			//HAL库使用的串口接收缓冲
+
 UART_HandleTypeDef huart3;
 
+extern R_Buffer Buffer_Rx;
+extern T_Buffer Buffer_Tx;
+   
+
 /* UART5 init function */
-void MX_UART5_Init(void)
+void MX_UART5_Init(uint32_t BAUD)
 {
 
   /* USER CODE BEGIN UART5_Init 0 */
@@ -50,34 +57,19 @@ void MX_UART5_Init(void)
 
   /* USER CODE END UART5_Init 1 */
   huart5.Instance = UART5;
-  huart5.Init.BaudRate = 9600;
+  huart5.Init.BaudRate = BAUD;
   huart5.Init.WordLength = UART_WORDLENGTH_8B;
   huart5.Init.StopBits = UART_STOPBITS_1;
   huart5.Init.Parity = UART_PARITY_NONE;
   huart5.Init.Mode = UART_MODE_TX_RX;
   huart5.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart5.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart5.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart5.Init.ClockPrescaler = UART_PRESCALER_DIV1;
-  huart5.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
   if (HAL_UART_Init(&huart5) != HAL_OK)
   {
     Error_Handler();
   }
-  if (HAL_UARTEx_SetTxFifoThreshold(&huart5, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_UARTEx_SetRxFifoThreshold(&huart5, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_UARTEx_DisableFifoMode(&huart5) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN UART5_Init 2 */
-	
+  HAL_UART_Receive_IT(&huart5, (uint8_t *)aRxBuffer_5, 1);	//该函数会开启接收中断	
+  __HAL_UART_ENABLE_IT(&huart5, UART_IT_IDLE);       	    //使能IDLE中断
   /* USER CODE END UART5_Init 2 */
 
 }
@@ -163,14 +155,11 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     HAL_GPIO_Init(RS485_DEBUG_TX_GPIO_Port, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = RS485_DEBUG_RX_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF5_UART5;
     HAL_GPIO_Init(RS485_DEBUG_RX_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN UART5_MspInit 1 */
-
+	HAL_NVIC_EnableIRQ(UART5_IRQn);
+	HAL_NVIC_SetPriority(UART5_IRQn, 7, 0);
   /* USER CODE END UART5_MspInit 1 */
   }
   else if(uartHandle->Instance==USART3)
@@ -225,7 +214,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PD2     ------> UART5_RX
     */
     HAL_GPIO_DeInit(RS485_DEBUG_TX_GPIO_Port, RS485_DEBUG_TX_Pin);
-
     HAL_GPIO_DeInit(RS485_DEBUG_RX_GPIO_Port, RS485_DEBUG_RX_Pin);
 
   /* USER CODE BEGIN UART5_MspDeInit 1 */
@@ -252,12 +240,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
   }
 }
 
-/* USER CODE BEGIN 1 */
-void USART5_CommSendAtStr(uint8_t * pArray, uint32_t len)
-{
-	HAL_UART_Transmit(&huart5,pArray,len,0xFFFF);
-		/* Loop until the end of transmission */	
-}
 
 void Debug_Printf(char *format, ...)
 {
@@ -278,6 +260,55 @@ void Debug_Printf(char *format, ...)
 	xSemaphoreGive(MutexPrintfHandle);
 #endif
 
+}
+
+
+/***************************************************************************//**
+* @brief  USART5_SendAtStr(uint8_t * pArray, uint32_t len)
+* @param  pData
+
+* @retval None.
+* Notes   None.
+********************************************************************************
+*/
+void USART5_CommSendAtStr(uint8_t * pArray, uint32_t len)
+{
+	//HAL_UART_Transmit(&huart5,pArray,len,0xFFFF);
+	HAL_UART_Transmit(&huart5, (uint8_t *)pArray, len, 100);	// 发送单字节数据
+}
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart->Instance == UART5) {
+		Buffer_Rx.buf[Buffer_Rx.len++] = aRxBuffer_5[0];
+		HAL_UART_Receive_IT(&huart5, (uint8_t *)aRxBuffer_5, 1);
+	} 
+}
+
+
+/**
+  * @brief  This function handles PPP interrupt request.
+  * @param  None
+  * @retval None
+  */
+void UART5_IRQHandler(void)
+{  
+	BaseType_t xHigherPriorityTaskWoken;
+	
+	HAL_UART_IRQHandler(&huart5);	//调用HAL库中断处理公用函数	
+	
+	if (__HAL_UART_GET_FLAG(&huart5, UART_FLAG_IDLE)) {
+		__HAL_UART_CLEAR_IDLEFLAG(&huart5);
+		if (Buffer_Rx.len > 2) {
+	//		USART2_CommSendAtStr(Buffer_Rx.buf, Buffer_Rx.len);
+	//		memset(Buffer_Rx.buf, 0, UART1_BUF_LENGTH);
+	//		Buffer_Rx.len = 0;
+			//释放二值信号量
+			xSemaphoreGiveFromISR(RS485DataSemaphore, &xHigherPriorityTaskWoken);	//释放二值信号量
+			portYIELD_FROM_ISR(xHigherPriorityTaskWoken);								//如果需要的话进行一次任务切换			
+		}
+	}
 }
 
 /* USER CODE END 1 */

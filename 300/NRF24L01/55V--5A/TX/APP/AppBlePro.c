@@ -171,6 +171,7 @@ void Get_CPU_ID(void){
 	tx_buf[9] = usCRC16(tx_buf,8);
 }
 
+
 void BlePro_task(void *pvParameters)
 {	
 	m_parse_date_timer = xTimerCreate("parse_date", 500, pdTRUE, NULL, parse_date_handler);
@@ -230,7 +231,7 @@ void BlePro_task(void *pvParameters)
 						if(PwmFreq == Set_140K)
 							count_time++;
 						if(count_time % 500 == 0){
-							if(PwmFreq < Set_100K){
+							if(PwmFreq < Set_95K){
 								PwmFreq = PwmFreq + 10;
 								hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
 								hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - 46)) / 100;
@@ -254,10 +255,10 @@ void BlePro_task(void *pvParameters)
 					rx_error_time = 0;
 					if (rx_buf[0] == 0) {
 						// 减小频率,增加功率
-						if (PwmFreq < Set_88K) {
+						if (PwmFreq < Set_85K) {
 							PwmFreq = PwmFreq + 1;
 						}else{
-							PwmFreq = Set_88K;
+							PwmFreq = Set_85K;
 						}	
 					} else if (rx_buf[0] == 1){
 						// 增大频率,减小功率
@@ -268,10 +269,10 @@ void BlePro_task(void *pvParameters)
 						}	
 					}else if (rx_buf[0] == 2) {
 						// 减小频率,增加功率
-						if (PwmFreq < Set_88K) {
+						if (PwmFreq < Set_85K) {
 							PwmFreq = PwmFreq + 5;
 						}else{
-							PwmFreq = Set_88K;
+							PwmFreq = Set_85K;
 						}	
 					}
 					hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;

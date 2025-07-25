@@ -56,5 +56,6 @@ tx\appperiod.o: ..\Hardware\drv_rf24L01.h
 tx\appperiod.o: ..\Hardware\drv_spi.h
 tx\appperiod.o: ../Core/Inc/main.h
 tx\appperiod.o: ../Core/Inc/hrtim.h
+tx\appperiod.o: ..\Hardware\Flash.h
 tx\appperiod.o: ..\APP\AppBlePro.h
 tx\appperiod.o: ..\APP\AppFaultHandler.h

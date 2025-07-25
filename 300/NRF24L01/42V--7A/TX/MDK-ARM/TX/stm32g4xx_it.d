@@ -56,6 +56,7 @@ tx\stm32g4xx_it.o: ..\Hardware\drv_rf24L01.h
 tx\stm32g4xx_it.o: ..\Hardware\drv_spi.h
 tx\stm32g4xx_it.o: ../Core/Inc/main.h
 tx\stm32g4xx_it.o: ../Core/Inc/hrtim.h
+tx\stm32g4xx_it.o: ..\Hardware\Flash.h
 tx\stm32g4xx_it.o: ..\APP\AppBlePro.h
 tx\stm32g4xx_it.o: ..\APP\AppFaultHandler.h
 tx\stm32g4xx_it.o: ../Core/Inc/stm32g4xx_it.h

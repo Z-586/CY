@@ -23,3 +23,8 @@
 .\objects\isr.o: ..\..\..\..\..\Driver\CMS32F033\inc\wdt.h
 .\objects\isr.o: ..\..\..\..\..\Driver\CMS32F033\inc\wwdt.h
 .\objects\isr.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\isr.o: ..\Hardware\RS485.h
+.\objects\isr.o: ..\code\demo_uart.h
+.\objects\isr.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\isr.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\isr.o: ..\..\..\..\..\Driver\CMS32F033\inc\fmc.h

@@ -1383,6 +1383,11 @@ typedef struct
     __IO  uint32_t CRCD;
 } FMC_T;
 
+/*------CON------------------------------------------------------------------*/
+#define	FMC_CON_BUSY_Pos					(5)
+#define FMC_CON_BUSY_Msk					(0x1UL<<FMC_CON_BUSY_Pos)
+#define	FMC_CON_ISPS_Pos					(4)
+#define FMC_CON_ISPS_Msk					(0x1UL<<FMC_CON_ISPS_Pos)
 
 
 /*@}*/ /* end of REGISTER  group  Peripherals */

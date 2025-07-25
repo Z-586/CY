@@ -123,7 +123,7 @@ int main(void)
 	MX_TIM8_Init();
 	MX_TIM2_Init();
 	MX_USART3_UART_Init();
-	MX_UART5_Init();	
+	//MX_UART5_Init();	
 	MX_IWDG_Init();
 	/* USER CODE BEGIN 2 */
 	drv_spi_init( );	

@@ -57,5 +57,6 @@ tx\hrtim.o: ..\Hardware\drv_rf24L01.h
 tx\hrtim.o: ..\Hardware\drv_spi.h
 tx\hrtim.o: ../Core/Inc/main.h
 tx\hrtim.o: ../Core/Inc/hrtim.h
+tx\hrtim.o: ..\Hardware\Flash.h
 tx\hrtim.o: ..\APP\AppBlePro.h
 tx\hrtim.o: ..\APP\AppFaultHandler.h

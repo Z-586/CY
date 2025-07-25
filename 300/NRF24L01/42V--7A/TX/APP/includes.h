@@ -8,6 +8,7 @@
 #include "semphr.h"
 
 /* ----------------------- HardWare includes ----------------------------------*/
+#include "usart.h"
 
 /* ----------------------- System includes ----------------------------------*/
 #include "stdlib.h"

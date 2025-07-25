@@ -56,6 +56,7 @@ tx\app_freertos.o: ..\Hardware\drv_rf24L01.h
 tx\app_freertos.o: ..\Hardware\drv_spi.h
 tx\app_freertos.o: ../Core/Inc/main.h
 tx\app_freertos.o: ../Core/Inc/hrtim.h
+tx\app_freertos.o: ..\Hardware\Flash.h
 tx\app_freertos.o: ..\APP\AppBlePro.h
 tx\app_freertos.o: ..\APP\AppFaultHandler.h
 tx\app_freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h

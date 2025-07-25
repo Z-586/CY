@@ -14,9 +14,7 @@ tx\drv_spi.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 tx\drv_spi.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 tx\drv_spi.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 tx\drv_spi.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
-tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+tx\drv_spi.o: ../Core/Inc/usart.h
 tx\drv_spi.o: ../Core/Inc/main.h
 tx\drv_spi.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h
 tx\drv_spi.o: ../Core/Inc/stm32g4xx_hal_conf.h
@@ -53,10 +51,14 @@ tx\drv_spi.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h
 tx\drv_spi.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h
 tx\drv_spi.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h
 tx\drv_spi.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h
+tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 tx\drv_spi.o: ..\Hardware\drv_rf24L01.h
 tx\drv_spi.o: ..\Hardware\drv_spi.h
 tx\drv_spi.o: ../Core/Inc/main.h
 tx\drv_spi.o: ../Core/Inc/hrtim.h
+tx\drv_spi.o: ..\Hardware\Flash.h
 tx\drv_spi.o: ..\APP\AppBlePro.h
 tx\drv_spi.o: ..\APP\AppFaultHandler.h
+tx\drv_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

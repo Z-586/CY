@@ -31,8 +31,6 @@
 /*	include files
 *****************************************************************************/
 #include "cms32f033.h"
-#include "stdio.h"
-#include <string.h>
 #include "drv_spi.h"
 #include "drv_RF24L01.h"
 #include "demo_gpio.h"
@@ -41,10 +39,9 @@
 #include "demo_pga.h"
 #include "demo_adc1.h"
 #include "demo_acmp.h"
-#include "CRC1.h"
 #include "delay.h"
 #include "Temp.h"
-
+#include "RS485.h"
 
 uint16_t I_Set(float I_set_number){
 	return 4096.0*16.816*4.0/200.0/5.0*I_set_number;
@@ -53,7 +50,9 @@ uint16_t I_Set(float I_set_number){
 uint16_t V_Set(float V_set_number){
 	return 4096.0*15/215/5.0*V_set_number;
 }
+
 static uint8_t OVER_V_FLAG = 0;
+uint8_t RS485_FLAG = 0;
 
 #define I_MIN I_Set(6.5 - Temp_State) 
 #define I_Min I_Set(3 - Temp_State) 
@@ -83,7 +82,7 @@ uint8_t tx_status = 0;
 uint8_t rx_buf[10] = {0};
 uint8_t rx_status = 0;
 
-static uint8_t FALL_State = 0;
+static uint16_t FALL_State = 0;
 
 static  uint8_t STATE =0;
 volatile uint32_t AdcCompareValue = 0;
@@ -92,16 +91,10 @@ volatile uint32_t ADC24Value = 0;
 
 uint8_t system_start = 0;
 uint8_t ACMP_Status = 0;
-uint8_t I_envage = 20;
-uint8_t I_envage_time = 0;
-
-uint8_t V_envage = 20;
-uint8_t V_envage_time = 0;
 
 uint8_t V_V_time = 0;
-
-uint8_t V_I_envage_time = 0;
 uint8_t V_envage_state = 0;
+
 static uint16_t connect_time = 0;
 static uint8_t V_CV_state = 0;
 /****************************************************************************/
@@ -132,9 +125,21 @@ uint16_t Delay_Time_Count = 0;
 uint16_t ADC_Real_V_Value = 0; 
 uint16_t ADC_Real_I_Value = 0; 
 
+uint8_t U_ReceiveData[32] ={0};
+volatile uint32_t U_RxdFlag =0;
+
 float I_Float(uint32_t AD_I){
 	float Value = (float)AD_I;
 	return Value*5.0/4.0*200.0/16.816/4096.0;
+}
+
+void RS_485_Push(void){
+	RXparameter.RX_Uout = (uint16_t)(V_Float(ADC_V_Value)*1000);
+	RXparameter.RX_I	= (uint16_t)(I_Float(ADC_Value)*1000);
+	if(RS485_FLAG == 1){
+		RS485_Anylize();
+		RS485_FLAG = 0;
+	}
 }
 
 uint32_t Verge(uint16_t Adc){
@@ -168,9 +173,10 @@ uint32_t Verge(uint16_t Adc){
 						if(Delay_Time_Count%15 == 0)
 							GPIO2->DO_f.P6 = 1;	
 						delay_xms(1);
-						printf("V: %0.2f\r\n",V_Float(ADC_Real_V_Value));					
+						Debug_Printf("V: %0.2f\r\n",V_Float(ADC_Real_V_Value));
+						RXparameter.State   = tx_buf[1];
+						RS_485_Push();
 					}
-				
 				}
 			}
 			delay_us(20);		
@@ -205,7 +211,9 @@ uint32_t Verge(uint16_t Adc){
 							if(Delay_Time_Count%15 == 0)
 								GPIO2->DO_f.P6 = 1;	
 							delay_xms(1);	
-							printf("I: %0.2f\r\n",I_Float(ADC_Real_I_Value));					
+							Debug_Printf("I: %0.2f\r\n",I_Float(ADC_Real_I_Value));
+							RXparameter.State  = tx_buf[1];
+							RS_485_Push();							
 						}
 					}
 				}
@@ -229,12 +237,13 @@ uint32_t Verge(uint16_t Adc){
 							if(Delay_Time_Count%15 == 0)
 								GPIO2->DO_f.P6 = 1;	
 							delay_xms(1);	
-							printf("I: %0.2f\r\n",I_Float(ADC_Real_I_Value));					
+							Debug_Printf("I: %0.2f\r\n",I_Float(ADC_Real_I_Value));
+							RXparameter.State  = tx_buf[1];
+							RS_485_Push();							
 						}
 					}
 				}
 			}
-				
 			delay_us(20);		
 		}	
 	}
@@ -271,9 +280,9 @@ int main(void)
 	GPIO_Config();
 	
 	drv_spi_init( );
-	UART_UART1_Config();
+	RS485_Init();
 	delay_xms(200);
-	printf("Version:1.0.0\r\n");
+	Debug_Printf("Version:1.0.1\r\n");
 	SYS_SET_IOCFG(IOP21CFG,SYS_IOCFG_P21_GPIO);				//初始化 P21
 	GPIO_CONFIG_IO_MODE(GPIO2, GPIO_PIN_1, GPIO_MODE_OUTPUT);
 	GPIO2->DO_f.P1 = 0;										//低断，高通
@@ -290,13 +299,19 @@ int main(void)
 	//RF24L01引脚初始化
 	NRF24L01_Gpio_Init( );		
 	NRF24L01_Init( );
-	NRF24L01_Check( );
 	//检测nRF24L01
 	if(NRF24L01_Check( ) == 0){
-		//printf("NRF24L01  is  ok!\n\r");
+		Debug_Printf("NRF24L01  is  ok!\n\r");
 	}
 	else{
-		//printf("NRF24L01  is  error!\n\r");
+		Debug_Printf("NRF24L01  is  error!\n\r");
+		while(NRF24L01_Check()){
+			NRF24L01_Gpio_Init( );		
+			NRF24L01_Init( );
+			RXparameter.State  = nrf2_4_ERROR;
+			RS_485_Push();
+			delay_xms(20);
+		}			
 	}	
 	while(1)
 	{
@@ -309,7 +324,8 @@ int main(void)
 	while(1)
 	{
 		if(TX_RX_State == 0){
-			connect_time = 0;
+//			connect_time = 0;
+			tx_buf[1] = 0xFF;
 			rx_status = NRF24L01_RxPacket(rx_buf);
 			if(rx_status == 0x00){
 				CRC_Value = usCRC16(rx_buf,8);
@@ -333,7 +349,6 @@ int main(void)
 			tx_buf[0] = 0xAA;	
 			if (ACMP_Status == 0) {
 				if(V_envage_state == 0){
-					FALL_State = 0;
 					tx_buf[1] = 0;
 					if(ADC_Value < I_MIN ){//2600
 						tx_buf[0] = 2;//快	
@@ -353,6 +368,7 @@ int main(void)
 								tx_buf[0] = 1;
 							}
 						}
+						FALL_State = 0;
 						V_CV_state = 1;
 					}
 				}else{
@@ -364,13 +380,15 @@ int main(void)
 									V_V_time++;
 									if(V_V_time == 240){
 										V_envage_state = 0;
-										V_CV_state = 1;
+										//V_CV_state = 1;
 									}
 								}
+							}else{
+								V_CV_state = 1;
 							}
 						}
 					}
-					if(ADC_Value >I_Set(7)){ 
+					if(ADC_Value >I_Set(Target_I)){ 
 						tx_buf[0] = 1;//快
 						V_CV_state = 1;
 					}
@@ -384,19 +402,20 @@ int main(void)
 			tx_status = NRF24L01_TxPacket(tx_buf);
 			if(tx_status == 0X20)  //NRF24L01模块发送数据并判断是否发送成功
 			{
-				//printf("Send is ok!\r\n");	
+				//Debug_Printf("Send is ok!\r\n");	
 				connect_time = 0;
 			}
 		}
 		connect_time++;
 		if(connect_time > 500){
-			printf("nrf_Timeout!\r\n");
+			Debug_Printf("nrf_Timeout!\r\n");
 			GPIO_OFF_Config();			
 		}
 		if(GPIO4->DO_f.P4 == 0)
 			GPIO_OFF_Config();
 		delay_xms(1);
-		
+		RXparameter.State  = tx_buf[1];
+		RS_485_Push();							
 	}
 }
 
@@ -509,25 +528,24 @@ void Check_State(void){
 			}
 		}
 /***********/
-//		printf("ADDR:%.2x %.2x %.2x %.2x %.2x \r\n",INIT_ADDR[0],INIT_ADDR[1],INIT_ADDR[2],INIT_ADDR[3],INIT_ADDR[4]);
-		printf("ACMP_Status ：%d Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",ACMP_Status,Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
+		Debug_Printf("ADDR:%.2x %.2x %.2x %.2x %.2x \r\n",INIT_ADDR[0],INIT_ADDR[1],INIT_ADDR[2],INIT_ADDR[3],INIT_ADDR[4]);
+		Debug_Printf("ACMP_Status ：%d Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",ACMP_Status,Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 	}	
 	if(ADC_V_Value > V_FALL_MAX){
 		if(ADC_Value < I_Fall){
 			FALL_State++;
-			if(FALL_State > 100){
-				FALL_State = 100;
+			if(FALL_State > 500){
+				FALL_State = 500;
 				tx_buf[1] = 5;
 				tx_buf[8] = usCRC16(tx_buf,8)>>8;
 				tx_buf[9] = usCRC16(tx_buf,8);
 			}
 		}
 	}
-
 }
 
 void check_test(void){
-	delay_xms(100);
+	delay_xms(20);
 	if(!ADC1_IS_BUSY())
 	{	
 		ADC1_Go();
@@ -543,10 +561,23 @@ void check_test(void){
 				GPIO2->DO_f.P1 = 1;
 				OVER_V_FLAG = 1;
 				delay_xms(10);
-			}				
+				Debug_Printf("MOS_IS_ON\r\n");
+				RXparameter.State  = 0xFF;
+			}else
+				RXparameter.State  = I_Over_ERROR;
+		}else{
+			if(ADC_V_Value < Check_V_MIN)
+				RXparameter.State  = V_Low_ERROR;
+			else
+				RXparameter.State  = V_Over_ERROR;
 		}			
+	}else{
+		if(Temp_Value == 999)
+			RXparameter.State  = Temp_ERROR;	
+		else
+			RXparameter.State  = Temp_Over_ERROR;	
 	}
-	
-	printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
+	RS_485_Push();	
+	Debug_Printf("Temp : %0.2f V_Value : %0.2fV  VAD %d I_Value : %0.3fA  I_Value : %d \r\n",Temp_Value,V_Float(ADC_V_Value),ADC_V_Value,I_Float(ADC_Value),ADC_Value);
 } 
 

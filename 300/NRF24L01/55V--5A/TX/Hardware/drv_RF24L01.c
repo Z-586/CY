@@ -193,8 +193,8 @@ void RX_Mode(unsigned char numofslave)
 	//选择通道0的有效数据宽度
 	NRF24L01_Write_Reg(SPI_WRITE_REG+RX_PW_P0,RX_Ten_WIDTH);
 	//设置TX发射参数,0db增益,2Mbps,低噪声增益开启
-	//NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x0f);
-	NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x08);
+	NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x0f);
+	//NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x08);
 	//配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,PRIM_RX接收模式
 	NRF24L01_Write_Reg(SPI_WRITE_REG+CONFIG, 0x0f);
 	//CE为高,进入接收模式
@@ -225,8 +225,8 @@ void TX_Mode(unsigned char numofslave)
 	//设置RF通道为40
 	NRF24L01_Write_Reg(SPI_WRITE_REG+RF_CH,40);
 	//设置TX发射参数,0db增益,2Mbps,低噪声增益开启
-	//NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x0f);
-	NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x08);
+	NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x0f);
+	//NRF24L01_Write_Reg(SPI_WRITE_REG+RF_SETUP,0x08);
 	//配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,PRIM_RX发送模式,开启所有中断
 	NRF24L01_Write_Reg(SPI_WRITE_REG+CONFIG,0x0e);
 	// CE为高,10us后启动发送

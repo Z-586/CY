@@ -22,12 +22,13 @@
 .\objects\main.o: ..\..\..\..\..\Driver\CMS32F033\inc\uart.h
 .\objects\main.o: ..\..\..\..\..\Driver\CMS32F033\inc\wdt.h
 .\objects\main.o: ..\..\..\..\..\Driver\CMS32F033\inc\wwdt.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: ..\code\drv_spi.h
 .\objects\main.o: ..\code\drv_RF24L01.h
 .\objects\main.o: ..\code\demo_gpio.h
 .\objects\main.o: ..\code\demo_uart.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: ..\code\demo_opa.h
 .\objects\main.o: ..\code\demo_pga.h
 .\objects\main.o: ..\code\demo_adc1.h
@@ -35,3 +36,5 @@
 .\objects\main.o: ..\Hardware\CRC1.h
 .\objects\main.o: ..\Hardware\delay.h
 .\objects\main.o: ..\Hardware\Temp.h
+.\objects\main.o: ..\Hardware\RS485.h
+.\objects\main.o: ..\..\..\..\..\Driver\CMS32F033\inc\fmc.h

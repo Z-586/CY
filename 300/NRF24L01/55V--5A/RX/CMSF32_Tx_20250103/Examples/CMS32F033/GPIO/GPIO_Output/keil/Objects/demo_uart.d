@@ -23,3 +23,6 @@
 .\objects\demo_uart.o: ..\..\..\..\..\Driver\CMS32F033\inc\uart.h
 .\objects\demo_uart.o: ..\..\..\..\..\Driver\CMS32F033\inc\wdt.h
 .\objects\demo_uart.o: ..\..\..\..\..\Driver\CMS32F033\inc\wwdt.h
+.\objects\demo_uart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\demo_uart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\demo_uart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

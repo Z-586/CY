@@ -177,8 +177,10 @@ void MX_HRTIM1_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN HRTIM1_Init 2 */
+ // HAL_HRTIM_MspPostInit(&hhrtim1);
 	Stop_PWM();
+  /* USER CODE BEGIN HRTIM1_Init 2 */
+//	HAL_HRTIM_BurstModeCtl(&hhrtim1,HRTIM_BURSTMODECTL_ENABLED);//HRTIM_BURSTMODECTL_DISABLED
 	HAL_HRTIM_WaveformOutputStart(&hhrtim1, HRTIM_OUTPUT_TA1|HRTIM_OUTPUT_TA2); 
 	HAL_HRTIM_WaveformCounterStart(&hhrtim1, HRTIM_TIMERID_TIMER_A);
   /* USER CODE END HRTIM1_Init 2 */

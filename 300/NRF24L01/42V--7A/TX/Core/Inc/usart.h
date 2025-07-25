@@ -37,11 +37,13 @@ extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
+#define USART_REC_LEN  128  					//定义最大接收字节数 128
 
 /* USER CODE END Private defines */
 
-void MX_UART5_Init(void);
+void MX_UART5_Init(uint32_t BAUD);
 void MX_USART3_UART_Init(void);
+void USART5_CommSendAtStr(uint8_t * pArray, uint32_t len);
 
 /* USER CODE BEGIN Prototypes */
 

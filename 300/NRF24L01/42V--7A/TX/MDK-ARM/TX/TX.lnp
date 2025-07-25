@@ -48,8 +48,10 @@
 "tx\appfaulthandler.o"
 "tx\appperiod.o"
 "tx\appledpro.o"
+"tx\apprs485proc.o"
 "tx\drv_rf24l01.o"
 "tx\drv_spi.o"
+"tx\flash.o"
 --library_type=microlib --strict --scatter "stm32g474xx_flash.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

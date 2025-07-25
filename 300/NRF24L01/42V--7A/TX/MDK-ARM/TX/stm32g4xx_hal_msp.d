@@ -56,5 +56,6 @@ tx\stm32g4xx_hal_msp.o: ..\Hardware\drv_rf24L01.h
 tx\stm32g4xx_hal_msp.o: ..\Hardware\drv_spi.h
 tx\stm32g4xx_hal_msp.o: ../Core/Inc/main.h
 tx\stm32g4xx_hal_msp.o: ../Core/Inc/hrtim.h
+tx\stm32g4xx_hal_msp.o: ..\Hardware\Flash.h
 tx\stm32g4xx_hal_msp.o: ..\APP\AppBlePro.h
 tx\stm32g4xx_hal_msp.o: ..\APP\AppFaultHandler.h

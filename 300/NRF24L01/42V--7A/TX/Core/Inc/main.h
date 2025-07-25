@@ -45,6 +45,7 @@ extern "C" {
 #include "drv_rf24L01.h"
 #include "drv_spi.h"
 #include "hrtim.h"
+#include "Flash.h"
 
 #include "AppBlePro.h"
 #include "AppFaultHandler.h"
@@ -131,7 +132,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 //参数设置
 #define RS485_ADDR			1
-#define DEBUG_ON            1
+#define DEBUG_ON            0
 
 #define Set_140K  19428 //SET_PWM_Freq(140000)
 #define Set_88K   30909//SET_PWM_Freq(88000)
@@ -251,7 +252,7 @@ void LedProc_task(void *pvParameters);
 
 //2
 //任务优先级
-#define RS485Proc_TASK_PRIO			 			         18
+#define RS485Proc_TASK_PRIO			 			         6
 //任务堆栈大小
 #define RS485Proc_STK_SIZE 					           250 
 //任务函数

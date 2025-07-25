@@ -56,6 +56,7 @@ tx\main.o: ..\Hardware\drv_rf24L01.h
 tx\main.o: ..\Hardware\drv_spi.h
 tx\main.o: ../Core/Inc/main.h
 tx\main.o: ../Core/Inc/hrtim.h
+tx\main.o: ..\Hardware\Flash.h
 tx\main.o: ..\APP\AppBlePro.h
 tx\main.o: ..\APP\AppFaultHandler.h
 tx\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h

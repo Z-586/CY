@@ -39,6 +39,9 @@ extern "C"
 /* Include files */
 /*****************************************************************************/
 #include "cms32f033.h"
+#include <stdarg.h>
+#include "stdio.h"
+#include <string.h>
 /*****************************************************************************/
 /* Global pre-processor symbols/macros ('#define') */
 /*****************************************************************************/
@@ -64,7 +67,8 @@ extern "C"
  ** \return  none
  ** \note	
 *****************************************************************************/
-void UART_UART1_Config(void);
+void UART_UART1_Config(uint32_t Baud);
+void Debug_Printf(char *format, ...);
 
 
 #ifdef __cplusplus

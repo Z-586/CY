@@ -14,9 +14,7 @@ tx\appblepro.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 tx\appblepro.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 tx\appblepro.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 tx\appblepro.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
-tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+tx\appblepro.o: ../Core/Inc/usart.h
 tx\appblepro.o: ../Core/Inc/main.h
 tx\appblepro.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h
 tx\appblepro.o: ../Core/Inc/stm32g4xx_hal_conf.h
@@ -53,10 +51,14 @@ tx\appblepro.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h
 tx\appblepro.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h
 tx\appblepro.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h
 tx\appblepro.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h
+tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 tx\appblepro.o: ..\Hardware\drv_rf24L01.h
 tx\appblepro.o: ..\Hardware\drv_spi.h
 tx\appblepro.o: ../Core/Inc/main.h
 tx\appblepro.o: ../Core/Inc/hrtim.h
+tx\appblepro.o: ..\Hardware\Flash.h
 tx\appblepro.o: ..\APP\AppBlePro.h
 tx\appblepro.o: ..\APP\AppFaultHandler.h
+tx\appblepro.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
