@@ -66,6 +66,7 @@ static uint8_t AT24C02_Check_Flag = 0;
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);// 设置中断优先级分组2
 	GPIO_IO_Config();//MOS引脚初始化
 	GD_Init();
+	Serial_Init();
 	delay_init();
 	Timer_Init();
 	AT24C02_Init();
@@ -140,7 +141,7 @@ static uint8_t AT24C02_Check_Flag = 0;
 				}			
 			}
 			Timer_Flag = 0;
-			if(Timer_Count %100 == 0){
+			if(Timer_Count %1 == 0){
 				Motor_GD_Check();
 				Timer_Count = 0;
 			}
@@ -169,6 +170,16 @@ uint8_t GD_Y_Open_number = 0;
 uint8_t GD_Z_Open_number = 0;
 
 void Motor_GD_Check(void){
+	Serial_SendString("X_Go_Zero_Flag:%d\r\n");
+	Serial_SendString("Y_Go_Zero_Flag:%d\r\n");
+	Serial_SendString("Z_Go_Zero_Flag:%d\r\n");
+	
+	if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_11) == 0){
+		GPIO_SetBits(GPIOB, GPIO_Pin_11);
+	}
+	else
+		GPIO_ResetBits(GPIOB, GPIO_Pin_11);	
+	
 	//X
 	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) == 0) {
 		GD_X_Open_number++;
@@ -179,10 +190,13 @@ void Motor_GD_Check(void){
 				X_Go_Zero_Flag = 3;
 			GD_X_Open_number = 10;
 		}
+		Serial_SendString("GD IS OK\r\n");
 	}else{
 		GD_X_Open_number = 0;
 		if(X_Go_Zero_Flag == 3)
 			X_Go_Zero_Flag = 2;
+		Serial_SendString("GD IS ERROR\r\n");
+
 	}
 	//Y
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 0) {
@@ -198,7 +212,6 @@ void Motor_GD_Check(void){
 		GD_Y_Open_number = 0;
 		if(Y_Go_Zero_Flag == 3)
 			Y_Go_Zero_Flag = 2;
-
 	}
 	//Z
 	if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0) {
@@ -226,6 +239,7 @@ void TIM2_IRQHandler(void)
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
 }
+
 
 void Zero_Action(void){	
 	//X
