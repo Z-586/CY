@@ -140,6 +140,7 @@ void Error_Handler(void);
 #define Set_86K   31627//SET_PWM_Freq(86000)
 #define Set_85K   32000//SET_PWM_Freq(85000)
 #define Set_95K  28631//SET_PWM_Freq(100000)
+#define Set_105K  25904//SET_PWM_Freq(100000)
 
 //≤Œ ˝…Ë÷√
 /////////////////////////////////////////////////////////

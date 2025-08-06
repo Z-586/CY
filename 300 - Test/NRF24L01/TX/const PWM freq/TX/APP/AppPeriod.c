@@ -418,7 +418,7 @@ void Period_task(void *pvParameters)
 	while (1)
 	{
 
-//		PhotoelectricSignalOperation();	//	
+		PhotoelectricSignalOperation();	//	
 
 
 
@@ -426,15 +426,15 @@ void Period_task(void *pvParameters)
 //		TX_TEMPER_1();        //²É¼¯ÎÂ¶È1
 //		Adc_deal();
 //		if ((TXparameter.Tx_U_PFC >= 0) && (TXparameter.Tx_U_PFC <= 400000)) {
-			_ready1 = HAL_GPIO_ReadPin(GPIOA, FLAG_READY_Pin);
-			_fault1 = HAL_GPIO_ReadPin(GPIOB, FLAG_FAULT_Pin);
-			if ((_ready1 == 1) && (_fault1 == 1)) {
-				PhotoelectricSignalOperation();	//	
-			
-			}else{
-				CLOSE_OPERATION();
-				Debug_Printf("_ready1:%d\t,_fault1:%d\r\n",_ready1,_fault1);
-			}
+//			_ready1 = HAL_GPIO_ReadPin(GPIOA, FLAG_READY_Pin);
+//			_fault1 = HAL_GPIO_ReadPin(GPIOB, FLAG_FAULT_Pin);
+//			if ((_ready1 == 1) && (_fault1 == 1)) {
+//				PhotoelectricSignalOperation();	//	
+//			
+//			}else{
+//				CLOSE_OPERATION();
+//				Debug_Printf("_ready1:%d\t,_fault1:%d\r\n",_ready1,_fault1);
+//			}
 //				PhotoelectricSignalOperation();	//	
 //				if (TXparameter.TX_T1 == 999) {
 //					TXparameter.system_stat2 = ERR_TX_TEMP;	

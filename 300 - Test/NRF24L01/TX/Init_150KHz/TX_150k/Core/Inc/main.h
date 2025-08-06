@@ -134,7 +134,7 @@ void Error_Handler(void);
 #define RS485_ADDR			1
 #define DEBUG_ON            0
 
-#define Set_150K  18133 //SET_PWM_Freq(140000)
+#define Set_150K  17548 //SET_PWM_Freq(140000)
 #define Set_140K  19428 //SET_PWM_Freq(140000)
 #define Set_88K   30909//SET_PWM_Freq(88000)
 #define Set_100K  27200//SET_PWM_Freq(100000)
