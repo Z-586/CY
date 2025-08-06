@@ -231,7 +231,7 @@ void BlePro_task(void *pvParameters)
 						if(PwmFreq == Set_140K)
 							count_time++;
 						if(count_time % 500 == 0){
-							if(PwmFreq < Set_95K){
+							if(PwmFreq < Set_105K){
 								PwmFreq = PwmFreq + 10;
 								hhrtim1.Instance->sTimerxRegs[0].PERxR = PwmFreq;
 								hhrtim1.Instance->sTimerxRegs[0].CMP1xR = (PwmFreq * (100 - 46)) / 100;

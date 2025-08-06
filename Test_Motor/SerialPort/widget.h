@@ -14,6 +14,8 @@
 #include <QSettings>
 #include <QFile>
 #include <QFileDialog>
+#include <QMessageBox>
+
 namespace Ui {
 class Widget;
 }

@@ -326,7 +326,7 @@ u32 Setting_baud(uint8_t no)
 			baud_32 = 115200;
 			break;
 		default:
-			baud_32 = 9600;
+			baud_32 = 115200;
 			break;			
 	}
 	return baud_32;

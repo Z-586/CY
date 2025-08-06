@@ -55,20 +55,20 @@ public:
     QLabel *label_11;
     QLineEdit *I;
     QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_2;
-    QComboBox *baud;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QComboBox *com;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QComboBox *baud;
     QPushButton *open_port;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_3;
-    QComboBox *bit;
     QPushButton *close_port;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_5;
     QComboBox *stopbit;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_3;
+    QComboBox *bit;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
     QComboBox *jiaoyan;
@@ -269,6 +269,7 @@ public:
         ZT->setMinimumSize(QSize(100, 30));
         ZT->setMaximumSize(QSize(100, 30));
         ZT->setFont(font);
+        ZT->setContextMenuPolicy(Qt::DefaultContextMenu);
         ZT->setReadOnly(true);
 
         horizontalLayout_9->addWidget(ZT);
@@ -329,29 +330,6 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(-1, -1, 5, -1);
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_2 = new QLabel(Widget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setFont(font);
-        label_2->setStyleSheet(QString::fromUtf8("border-width: 1px;\n"
-"border-style:solid;\n"
-"border-color:rgb(222,222,222);"));
-
-        horizontalLayout_2->addWidget(label_2);
-
-        baud = new QComboBox(Widget);
-        baud->addItem(QString());
-        baud->addItem(QString());
-        baud->setObjectName(QString::fromUtf8("baud"));
-        baud->setFont(font);
-
-        horizontalLayout_2->addWidget(baud);
-
-
-        gridLayout->addLayout(horizontalLayout_2, 3, 0, 1, 1);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -373,12 +351,69 @@ public:
 
         gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
 
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        label_2 = new QLabel(Widget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font);
+        label_2->setStyleSheet(QString::fromUtf8("border-width: 1px;\n"
+"border-style:solid;\n"
+"border-color:rgb(222,222,222);"));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        baud = new QComboBox(Widget);
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->addItem(QString());
+        baud->setObjectName(QString::fromUtf8("baud"));
+        baud->setFont(font);
+
+        horizontalLayout_2->addWidget(baud);
+
+
+        gridLayout->addLayout(horizontalLayout_2, 3, 0, 1, 1);
+
         open_port = new QPushButton(Widget);
         open_port->setObjectName(QString::fromUtf8("open_port"));
         open_port->setMinimumSize(QSize(0, 30));
         open_port->setFont(font1);
 
-        gridLayout->addWidget(open_port, 9, 0, 1, 1);
+        gridLayout->addWidget(open_port, 10, 0, 1, 1);
+
+        close_port = new QPushButton(Widget);
+        close_port->setObjectName(QString::fromUtf8("close_port"));
+        close_port->setMinimumSize(QSize(0, 30));
+        close_port->setFont(font1);
+
+        gridLayout->addWidget(close_port, 9, 0, 1, 1);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        label_5 = new QLabel(Widget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font);
+        label_5->setStyleSheet(QString::fromUtf8("border-width: 1px;\n"
+"border-style:solid;\n"
+"border-color:rgb(222,222,222);"));
+
+        horizontalLayout_5->addWidget(label_5);
+
+        stopbit = new QComboBox(Widget);
+        stopbit->addItem(QString());
+        stopbit->setObjectName(QString::fromUtf8("stopbit"));
+        stopbit->setFont(font);
+
+        horizontalLayout_5->addWidget(stopbit);
+
+
+        gridLayout->addLayout(horizontalLayout_5, 6, 0, 1, 1);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
@@ -404,35 +439,6 @@ public:
 
 
         gridLayout->addLayout(horizontalLayout_3, 4, 0, 1, 1);
-
-        close_port = new QPushButton(Widget);
-        close_port->setObjectName(QString::fromUtf8("close_port"));
-        close_port->setMinimumSize(QSize(0, 30));
-        close_port->setFont(font1);
-
-        gridLayout->addWidget(close_port, 8, 0, 1, 1);
-
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        label_5 = new QLabel(Widget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setFont(font);
-        label_5->setStyleSheet(QString::fromUtf8("border-width: 1px;\n"
-"border-style:solid;\n"
-"border-color:rgb(222,222,222);"));
-
-        horizontalLayout_5->addWidget(label_5);
-
-        stopbit = new QComboBox(Widget);
-        stopbit->addItem(QString());
-        stopbit->setObjectName(QString::fromUtf8("stopbit"));
-        stopbit->setFont(font);
-
-        horizontalLayout_5->addWidget(stopbit);
-
-
-        gridLayout->addLayout(horizontalLayout_5, 6, 0, 1, 1);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
@@ -461,18 +467,22 @@ public:
         horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
         label_19 = new QLabel(Widget);
         label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setMinimumSize(QSize(80, 0));
+        label_19->setMaximumSize(QSize(80, 16777215));
 
         horizontalLayout_11->addWidget(label_19);
 
         lineEdit = new QLineEdit(Widget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setMinimumSize(QSize(50, 30));
-        lineEdit->setMaximumSize(QSize(50, 30));
+        lineEdit->setMinimumSize(QSize(45, 30));
+        lineEdit->setMaximumSize(QSize(45, 30));
+        lineEdit->setContextMenuPolicy(Qt::DefaultContextMenu);
+        lineEdit->setLayoutDirection(Qt::LeftToRight);
 
-        horizontalLayout_11->addWidget(lineEdit);
+        horizontalLayout_11->addWidget(lineEdit, 0, Qt::AlignHCenter);
 
 
-        gridLayout->addLayout(horizontalLayout_11, 0, 0, 1, 1);
+        gridLayout->addLayout(horizontalLayout_11, 11, 0, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 7, 2);
@@ -598,8 +608,8 @@ public:
 
         State_Anylise = new QLabel(Widget);
         State_Anylise->setObjectName(QString::fromUtf8("State_Anylise"));
-        State_Anylise->setMinimumSize(QSize(350, 30));
-        State_Anylise->setMaximumSize(QSize(350, 30));
+        State_Anylise->setMinimumSize(QSize(360, 30));
+        State_Anylise->setMaximumSize(QSize(360, 30));
         State_Anylise->setFont(font);
         State_Anylise->setStyleSheet(QString::fromUtf8("border-width: 1px;\n"
 "border-style:solid;\n"
@@ -651,26 +661,31 @@ public:
         label_12->setText(QCoreApplication::translate("Widget", "\350\276\223\345\207\272\347\224\265\345\216\213(mV) \357\274\232", nullptr));
         V->setInputMask(QString());
         label_11->setText(QCoreApplication::translate("Widget", "\350\276\223\345\207\272\347\224\265\346\265\201(mA) \357\274\232", nullptr));
-        label_2->setText(QCoreApplication::translate("Widget", "\346\263\242\347\211\271\347\216\207\357\274\232", nullptr));
-        baud->setItemText(0, QCoreApplication::translate("Widget", "115200", nullptr));
-        baud->setItemText(1, QCoreApplication::translate("Widget", "9600", nullptr));
-
         label->setText(QCoreApplication::translate("Widget", "\347\253\257\345\217\243\345\217\267\357\274\232", nullptr));
+        label_2->setText(QCoreApplication::translate("Widget", "\346\263\242\347\211\271\347\216\207\357\274\232", nullptr));
+        baud->setItemText(0, QCoreApplication::translate("Widget", "2400", nullptr));
+        baud->setItemText(1, QCoreApplication::translate("Widget", "4800", nullptr));
+        baud->setItemText(2, QCoreApplication::translate("Widget", "9600", nullptr));
+        baud->setItemText(3, QCoreApplication::translate("Widget", "19200", nullptr));
+        baud->setItemText(4, QCoreApplication::translate("Widget", "38400", nullptr));
+        baud->setItemText(5, QCoreApplication::translate("Widget", "57600", nullptr));
+        baud->setItemText(6, QCoreApplication::translate("Widget", "115200", nullptr));
+
         open_port->setText(QCoreApplication::translate("Widget", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
+        close_port->setText(QCoreApplication::translate("Widget", "\345\205\263\351\227\255\344\270\262\345\217\243", nullptr));
+        label_5->setText(QCoreApplication::translate("Widget", "\345\201\234\346\255\242\344\275\215\357\274\232", nullptr));
+        stopbit->setItemText(0, QCoreApplication::translate("Widget", "1", nullptr));
+
         label_3->setText(QCoreApplication::translate("Widget", "\346\225\260\346\215\256\344\275\215\357\274\232", nullptr));
         bit->setItemText(0, QCoreApplication::translate("Widget", "8", nullptr));
         bit->setItemText(1, QCoreApplication::translate("Widget", "5", nullptr));
         bit->setItemText(2, QCoreApplication::translate("Widget", "6", nullptr));
         bit->setItemText(3, QCoreApplication::translate("Widget", "7", nullptr));
 
-        close_port->setText(QCoreApplication::translate("Widget", "\345\205\263\351\227\255\344\270\262\345\217\243", nullptr));
-        label_5->setText(QCoreApplication::translate("Widget", "\345\201\234\346\255\242\344\275\215\357\274\232", nullptr));
-        stopbit->setItemText(0, QCoreApplication::translate("Widget", "1", nullptr));
-
         label_4->setText(QCoreApplication::translate("Widget", "\346\240\241\351\252\214\344\275\215\357\274\232", nullptr));
         jiaoyan->setItemText(0, QCoreApplication::translate("Widget", "0", nullptr));
 
-        label_19->setText(QCoreApplication::translate("Widget", "RS485\345\234\260\345\235\200\357\274\232", nullptr));
+        label_19->setText(QCoreApplication::translate("Widget", " RS485\345\234\260\345\235\200\357\274\232", nullptr));
         lineEdit->setText(QCoreApplication::translate("Widget", "255", nullptr));
         label_7->setText(QCoreApplication::translate("Widget", "\344\275\215\347\275\256  X\357\274\232", nullptr));
         label_13->setText(QCoreApplication::translate("Widget", "mm", nullptr));

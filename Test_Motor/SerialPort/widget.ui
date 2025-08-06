@@ -450,6 +450,9 @@ border-color:rgb(222,222,222);</string>
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
@@ -591,48 +594,6 @@ border-color:rgb(222,222,222);</string>
      <property name="rightMargin">
       <number>5</number>
      </property>
-     <item row="3" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-width: 1px;
-border-style:solid;
-border-color:rgb(222,222,222);</string>
-         </property>
-         <property name="text">
-          <string>波特率：</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="baud">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <item>
-          <property name="text">
-           <string>115200</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9600</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -665,7 +626,74 @@ border-color:rgb(222,222,222);</string>
        </item>
       </layout>
      </item>
-     <item row="9" column="0">
+     <item row="3" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-width: 1px;
+border-style:solid;
+border-color:rgb(222,222,222);</string>
+         </property>
+         <property name="text">
+          <string>波特率：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="baud">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string>2400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4800</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>19200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>38400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>57600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>115200</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="10" column="0">
       <widget class="QPushButton" name="open_port">
        <property name="minimumSize">
         <size>
@@ -684,59 +712,7 @@ border-color:rgb(222,222,222);</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-width: 1px;
-border-style:solid;
-border-color:rgb(222,222,222);</string>
-         </property>
-         <property name="text">
-          <string>数据位：</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="bit">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="8" column="0">
+     <item row="9" column="0">
       <widget class="QPushButton" name="close_port">
        <property name="minimumSize">
         <size>
@@ -792,6 +768,58 @@ border-color:rgb(222,222,222);</string>
        </item>
       </layout>
      </item>
+     <item row="4" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-width: 1px;
+border-style:solid;
+border-color:rgb(222,222,222);</string>
+         </property>
+         <property name="text">
+          <string>数据位：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="bit">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item row="5" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
@@ -829,28 +857,46 @@ border-color:rgb(222,222,222);</string>
        </item>
       </layout>
      </item>
-     <item row="0" column="0">
+     <item row="11" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <item>
         <widget class="QLabel" name="label_19">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
-          <string>RS485地址：</string>
+          <string> RS485地址：</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="QLineEdit" name="lineEdit">
          <property name="minimumSize">
           <size>
-           <width>50</width>
+           <width>45</width>
            <height>30</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>45</width>
            <height>30</height>
           </size>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>255</string>
@@ -1175,13 +1221,13 @@ border-color:rgb(222,222,222);</string>
       <widget class="QLabel" name="State_Anylise">
        <property name="minimumSize">
         <size>
-         <width>350</width>
+         <width>360</width>
          <height>30</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>350</width>
+         <width>360</width>
          <height>30</height>
         </size>
        </property>

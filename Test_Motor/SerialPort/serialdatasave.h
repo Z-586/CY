@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QDataStream>
+#include <QMessageBox>
 
 //任务执行类
 class SaveSerialData : public QObject
@@ -34,12 +35,14 @@ private:
     QFile *file;
     bool IsNeedTime;
     TimeStamp_Buf_t TimeStamp;
+    QString filename;
 
 public:
 
     void Open_File(QString SaveSerialData_FileName_Path, bool state);   // 打开文件，以及是否需要增加时间戳
     void close_File();      // 关闭文件
     void SaveData_File(const QByteArray &info); // 保存数据
+    void Save_String_File(QString data);  // 保存数据
 
 private:
 

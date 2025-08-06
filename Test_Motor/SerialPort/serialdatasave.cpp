@@ -38,7 +38,6 @@ void SaveSerialData::SaveData_File(const QByteArray &data)  // 保存数据
         QByteArray data_temp((const char*)TimeStamp.bytes, 10);
         data_temp.append(data_temp);
     }
-    //为保持较快写入速度，大于5M则备份重新生成
     QDataStream out(file);   // we will serialize the data into the file
 
     if(file->isOpen())
@@ -48,4 +47,18 @@ void SaveSerialData::SaveData_File(const QByteArray &data)  // 保存数据
           file->close(); // 可以考虑不要
       }
     }
+}
+
+void SaveSerialData::Save_String_File(QString data)  // 保存数据
+{
+    QString flie_String;
+    if(IsNeedTime)
+    {
+        QString TimeStamp_temp = QDateTime::currentDateTime().toString("yyyy:MM:dd:hh:mm:ss:zzz");
+        flie_String.append(TimeStamp_temp);
+    }
+    flie_String.append(data);
+    flie_String.append('\n');
+    QTextStream stream(file);
+    stream << flie_String;
 }
