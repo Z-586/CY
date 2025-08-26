@@ -809,7 +809,7 @@ ARM Macro Assembler    Page 13
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=tx\startup_stm32g474xx.d -otx\startup_stm32g474xx.o -I../Driver
 s/CMSIS/Include -I.\RTE\_TX -ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\In
-clude -ID:\Keil_v5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.6\Drivers\CMSIS\Device\ST\ST
+clude -ID:\Keil_v5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\ST
 M32G4xx\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION 
 SETA 527" --predefine="_RTE_ SETA 1" --predefine="STM32G474xx SETA 1" --list=st
 artup_stm32g474xx.lst startup_stm32g474xx.s
