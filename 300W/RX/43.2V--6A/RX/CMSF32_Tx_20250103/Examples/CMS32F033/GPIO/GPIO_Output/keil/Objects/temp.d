@@ -25,3 +25,8 @@
 .\objects\temp.o: ..\..\..\..\..\Driver\CMS32F033\inc\wwdt.h
 .\objects\temp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\temp.o: ..\Hardware\delay.h
+.\objects\temp.o: ..\Hardware\RS485.h
+.\objects\temp.o: ..\code\demo_uart.h
+.\objects\temp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\temp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\temp.o: ..\..\..\..\..\Driver\CMS32F033\inc\fmc.h

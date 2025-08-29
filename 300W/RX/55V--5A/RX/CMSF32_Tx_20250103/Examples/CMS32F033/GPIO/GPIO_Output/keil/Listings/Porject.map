@@ -945,26 +945,26 @@ Image Symbol Table
     i.drv_spi_init                           0x00003634   Section        0  drv_spi.o(i.drv_spi_init)
     i.drv_spi_read_write_byte                0x00003728   Section        0  drv_spi.o(i.drv_spi_read_write_byte)
     i.main                                   0x000037c4   Section        0  main.o(i.main)
-    i.usCRC16                                0x00003c00   Section        0  rs485.o(i.usCRC16)
-    x$fpl$fadd                               0x00003c38   Section      140  faddsub.o(x$fpl$fadd)
-    _fadd1                                   0x00003c45   Thumb Code     0  faddsub.o(x$fpl$fadd)
-    x$fpl$feqf                               0x00003cc4   Section       84  feqf.o(x$fpl$feqf)
-    x$fpl$fleqf                              0x00003d18   Section       84  flef.o(x$fpl$fleqf)
-    x$fpl$fmul                               0x00003d6c   Section      176  fmul.o(x$fpl$fmul)
-    x$fpl$frleqf                             0x00003e1c   Section       88  frlef.o(x$fpl$frleqf)
-    x$fpl$fsub                               0x00003e74   Section      208  faddsub.o(x$fpl$fsub)
-    _fsub1                                   0x00003e81   Thumb Code     0  faddsub.o(x$fpl$fsub)
-    .constdata                               0x00003f44   Section      148  temp.o(.constdata)
-    x$fpl$usenofp                            0x00003f44   Section        0  usenofp.o(x$fpl$usenofp)
-    .constdata                               0x00003fd8   Section      512  rs485.o(.constdata)
-    aucCRCHi                                 0x00003fd8   Data         256  rs485.o(.constdata)
-    aucCRCLo                                 0x000040d8   Data         256  rs485.o(.constdata)
-    .constdata                               0x000041d8   Section      128  ddiv.o(.constdata)
-    ddiv_reciptbl                            0x000041d8   Data         128  ddiv.o(.constdata)
-    .constdata                               0x00004258   Section       64  fdiv.o(.constdata)
-    fdiv_tab                                 0x00004258   Data          64  fdiv.o(.constdata)
-    .conststring                             0x00004298   Section      164  main.o(.conststring)
-    .conststring                             0x0000433c   Section       25  drv_rf24l01.o(.conststring)
+    i.usCRC16                                0x00003c08   Section        0  rs485.o(i.usCRC16)
+    x$fpl$fadd                               0x00003c40   Section      140  faddsub.o(x$fpl$fadd)
+    _fadd1                                   0x00003c4d   Thumb Code     0  faddsub.o(x$fpl$fadd)
+    x$fpl$feqf                               0x00003ccc   Section       84  feqf.o(x$fpl$feqf)
+    x$fpl$fleqf                              0x00003d20   Section       84  flef.o(x$fpl$fleqf)
+    x$fpl$fmul                               0x00003d74   Section      176  fmul.o(x$fpl$fmul)
+    x$fpl$frleqf                             0x00003e24   Section       88  frlef.o(x$fpl$frleqf)
+    x$fpl$fsub                               0x00003e7c   Section      208  faddsub.o(x$fpl$fsub)
+    _fsub1                                   0x00003e89   Thumb Code     0  faddsub.o(x$fpl$fsub)
+    .constdata                               0x00003f4c   Section      148  temp.o(.constdata)
+    x$fpl$usenofp                            0x00003f4c   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x00003fe0   Section      512  rs485.o(.constdata)
+    aucCRCHi                                 0x00003fe0   Data         256  rs485.o(.constdata)
+    aucCRCLo                                 0x000040e0   Data         256  rs485.o(.constdata)
+    .constdata                               0x000041e0   Section      128  ddiv.o(.constdata)
+    ddiv_reciptbl                            0x000041e0   Data         128  ddiv.o(.constdata)
+    .constdata                               0x00004260   Section       64  fdiv.o(.constdata)
+    fdiv_tab                                 0x00004260   Data          64  fdiv.o(.constdata)
+    .conststring                             0x000042a0   Section      164  main.o(.conststring)
+    .conststring                             0x00004344   Section       25  drv_rf24l01.o(.conststring)
     .data                                    0x20000000   Section       12  system_cms32f033.o(.data)
     .data                                    0x2000000c   Section       69  main.o(.data)
     OVER_V_FLAG                              0x2000000c   Data           1  main.o(.data)
@@ -1268,24 +1268,24 @@ Image Symbol Table
     delay_xms                                0x0000361d   Thumb Code    24  delay.o(i.delay_xms)
     drv_spi_init                             0x00003635   Thumb Code   240  drv_spi.o(i.drv_spi_init)
     drv_spi_read_write_byte                  0x00003729   Thumb Code   156  drv_spi.o(i.drv_spi_read_write_byte)
-    main                                     0x000037c5   Thumb Code   916  main.o(i.main)
-    usCRC16                                  0x00003c01   Thumb Code    46  rs485.o(i.usCRC16)
-    __aeabi_fadd                             0x00003c39   Thumb Code     0  faddsub.o(x$fpl$fadd)
-    _fadd                                    0x00003c39   Thumb Code   134  faddsub.o(x$fpl$fadd)
-    __aeabi_cfcmpeq                          0x00003cc5   Thumb Code     0  feqf.o(x$fpl$feqf)
-    _fcmpeq                                  0x00003cc5   Thumb Code    78  feqf.o(x$fpl$feqf)
-    __aeabi_cfcmple                          0x00003d19   Thumb Code     0  flef.o(x$fpl$fleqf)
-    _fcmple                                  0x00003d19   Thumb Code    78  flef.o(x$fpl$fleqf)
-    __aeabi_fmul                             0x00003d6d   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x00003d6d   Thumb Code   172  fmul.o(x$fpl$fmul)
-    __aeabi_cfrcmple                         0x00003e1d   Thumb Code     0  frlef.o(x$fpl$frleqf)
-    _frcmple                                 0x00003e1d   Thumb Code    84  frlef.o(x$fpl$frleqf)
-    __aeabi_fsub                             0x00003e75   Thumb Code     0  faddsub.o(x$fpl$fsub)
-    _fsub                                    0x00003e75   Thumb Code   204  faddsub.o(x$fpl$fsub)
-    RTD_TAB_PT100                            0x00003f44   Data         148  temp.o(.constdata)
-    __I$use$fp                               0x00003f44   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x00004358   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00004378   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x000037c5   Thumb Code   922  main.o(i.main)
+    usCRC16                                  0x00003c09   Thumb Code    46  rs485.o(i.usCRC16)
+    __aeabi_fadd                             0x00003c41   Thumb Code     0  faddsub.o(x$fpl$fadd)
+    _fadd                                    0x00003c41   Thumb Code   134  faddsub.o(x$fpl$fadd)
+    __aeabi_cfcmpeq                          0x00003ccd   Thumb Code     0  feqf.o(x$fpl$feqf)
+    _fcmpeq                                  0x00003ccd   Thumb Code    78  feqf.o(x$fpl$feqf)
+    __aeabi_cfcmple                          0x00003d21   Thumb Code     0  flef.o(x$fpl$fleqf)
+    _fcmple                                  0x00003d21   Thumb Code    78  flef.o(x$fpl$fleqf)
+    __aeabi_fmul                             0x00003d75   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x00003d75   Thumb Code   172  fmul.o(x$fpl$fmul)
+    __aeabi_cfrcmple                         0x00003e25   Thumb Code     0  frlef.o(x$fpl$frleqf)
+    _frcmple                                 0x00003e25   Thumb Code    84  frlef.o(x$fpl$frleqf)
+    __aeabi_fsub                             0x00003e7d   Thumb Code     0  faddsub.o(x$fpl$fsub)
+    _fsub                                    0x00003e7d   Thumb Code   204  faddsub.o(x$fpl$fsub)
+    RTD_TAB_PT100                            0x00003f4c   Data         148  temp.o(.constdata)
+    __I$use$fp                               0x00003f4c   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x00004360   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00004380   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_cms32f033.o(.data)
     SystemAPBClock                           0x20000004   Data           4  system_cms32f033.o(.data)
     CyclesPerUs                              0x20000008   Data           4  system_cms32f033.o(.data)
@@ -1344,9 +1344,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00004410, Max: 0x00008000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00004418, Max: 0x00008000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00004378, Max: 0x00008000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00004380, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1561,42 +1561,42 @@ Memory Map of the image
     0x0000361c   0x0000361c   0x00000018   Code   RO         1664    i.delay_xms         delay.o
     0x00003634   0x00003634   0x000000f4   Code   RO         1505    i.drv_spi_init      drv_spi.o
     0x00003728   0x00003728   0x0000009c   Code   RO         1506    i.drv_spi_read_write_byte  drv_spi.o
-    0x000037c4   0x000037c4   0x0000043c   Code   RO         1122    i.main              main.o
-    0x00003c00   0x00003c00   0x00000038   Code   RO         1749    i.usCRC16           rs485.o
-    0x00003c38   0x00003c38   0x0000008c   Code   RO         1873    x$fpl$fadd          fz_ps.l(faddsub.o)
-    0x00003cc4   0x00003cc4   0x00000054   Code   RO         1882    x$fpl$feqf          fz_ps.l(feqf.o)
-    0x00003d18   0x00003d18   0x00000054   Code   RO         1888    x$fpl$fleqf         fz_ps.l(flef.o)
-    0x00003d6c   0x00003d6c   0x000000b0   Code   RO         1890    x$fpl$fmul          fz_ps.l(fmul.o)
-    0x00003e1c   0x00003e1c   0x00000058   Code   RO         1892    x$fpl$frleqf        fz_ps.l(frlef.o)
-    0x00003e74   0x00003e74   0x000000d0   Code   RO         1875    x$fpl$fsub          fz_ps.l(faddsub.o)
-    0x00003f44   0x00003f44   0x00000000   Code   RO         1901    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x00003f44   0x00003f44   0x00000094   Data   RO         1703    .constdata          temp.o
-    0x00003fd8   0x00003fd8   0x00000200   Data   RO         1751    .constdata          rs485.o
-    0x000041d8   0x000041d8   0x00000080   Data   RO         1863    .constdata          fz_ps.l(ddiv.o)
-    0x00004258   0x00004258   0x00000040   Data   RO         1880    .constdata          fz_ps.l(fdiv.o)
-    0x00004298   0x00004298   0x000000a4   Data   RO         1124    .conststring        main.o
-    0x0000433c   0x0000433c   0x00000019   Data   RO         1432    .conststring        drv_rf24l01.o
-    0x00004355   0x00004355   0x00000003   PAD
-    0x00004358   0x00004358   0x00000020   Data   RO         2064    Region$$Table       anon$$obj.o
+    0x000037c4   0x000037c4   0x00000444   Code   RO         1122    i.main              main.o
+    0x00003c08   0x00003c08   0x00000038   Code   RO         1749    i.usCRC16           rs485.o
+    0x00003c40   0x00003c40   0x0000008c   Code   RO         1873    x$fpl$fadd          fz_ps.l(faddsub.o)
+    0x00003ccc   0x00003ccc   0x00000054   Code   RO         1882    x$fpl$feqf          fz_ps.l(feqf.o)
+    0x00003d20   0x00003d20   0x00000054   Code   RO         1888    x$fpl$fleqf         fz_ps.l(flef.o)
+    0x00003d74   0x00003d74   0x000000b0   Code   RO         1890    x$fpl$fmul          fz_ps.l(fmul.o)
+    0x00003e24   0x00003e24   0x00000058   Code   RO         1892    x$fpl$frleqf        fz_ps.l(frlef.o)
+    0x00003e7c   0x00003e7c   0x000000d0   Code   RO         1875    x$fpl$fsub          fz_ps.l(faddsub.o)
+    0x00003f4c   0x00003f4c   0x00000000   Code   RO         1901    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x00003f4c   0x00003f4c   0x00000094   Data   RO         1703    .constdata          temp.o
+    0x00003fe0   0x00003fe0   0x00000200   Data   RO         1751    .constdata          rs485.o
+    0x000041e0   0x000041e0   0x00000080   Data   RO         1863    .constdata          fz_ps.l(ddiv.o)
+    0x00004260   0x00004260   0x00000040   Data   RO         1880    .constdata          fz_ps.l(fdiv.o)
+    0x000042a0   0x000042a0   0x000000a4   Data   RO         1124    .conststring        main.o
+    0x00004344   0x00004344   0x00000019   Data   RO         1432    .conststring        drv_rf24l01.o
+    0x0000435d   0x0000435d   0x00000003   PAD
+    0x00004360   0x00004360   0x00000020   Data   RO         2064    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x00004378, Size: 0x00000ad0, Max: 0x00002000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x00004380, Size: 0x00000ad0, Max: 0x00002000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00004378   0x0000000c   Data   RW            5    .data               system_cms32f033.o
-    0x2000000c   0x00004384   0x00000045   Data   RW         1125    .data               main.o
-    0x20000051   0x000043c9   0x00000003   PAD
-    0x20000054   0x000043cc   0x0000000c   Data   RW         1263    .data               isr.o
-    0x20000060   0x000043d8   0x00000009   Data   RW         1433    .data               drv_rf24l01.o
-    0x20000069   0x000043e1   0x00000001   Data   RW         1665    .data               delay.o
-    0x2000006a   0x000043e2   0x00000002   PAD
-    0x2000006c   0x000043e4   0x00000029   Data   RW         1752    .data               rs485.o
-    0x20000095   0x0000440d   0x00000003   PAD
+    0x20000000   0x00004380   0x0000000c   Data   RW            5    .data               system_cms32f033.o
+    0x2000000c   0x0000438c   0x00000045   Data   RW         1125    .data               main.o
+    0x20000051   0x000043d1   0x00000003   PAD
+    0x20000054   0x000043d4   0x0000000c   Data   RW         1263    .data               isr.o
+    0x20000060   0x000043e0   0x00000009   Data   RW         1433    .data               drv_rf24l01.o
+    0x20000069   0x000043e9   0x00000001   Data   RW         1665    .data               delay.o
+    0x2000006a   0x000043ea   0x00000002   PAD
+    0x2000006c   0x000043ec   0x00000029   Data   RW         1752    .data               rs485.o
+    0x20000095   0x00004415   0x00000003   PAD
     0x20000098        -       0x00000034   Zero   RW         1123    .bss                main.o
     0x200000cc        -       0x000000a0   Zero   RW         1750    .bss                rs485.o
     0x2000016c        -       0x00000060   Zero   RW         1941    .bss                c_p.l(libspace.o)
-    0x200001cc   0x0000440d   0x00000004   PAD
+    0x200001cc   0x00004415   0x00000004   PAD
     0x200001d0        -       0x00000100   Zero   RW          100    HEAP                startup_cms32f033.o
     0x200002d0        -       0x00000800   Zero   RW           99    STACK               startup_cms32f033.o
 
@@ -1622,7 +1622,7 @@ Image component sizes
        184         16          0          0          0       1763   fmc.o
         62          0          0          0          0      42134   gpio.o
        366         48          0         12          0      11203   isr.o
-      3876        508        164         69         52      24958   main.o
+      3884        510        164         69         52      24962   main.o
         74          0          0          0          0       3237   opa.o
         68          4          0          0          0       2641   pga.o
          4          0          0          0          0        520   retarget.o
@@ -1634,7 +1634,7 @@ Image component sizes
        120          6          0          0          0       4673   uart.o
 
     ----------------------------------------------------------------------
-     10712       1080       1076        152       2516     196076   Object Totals
+     10720       1082       1076        152       2516     196080   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         22          0          3          8          0          0   (incl. Padding)
 
@@ -1704,15 +1704,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     16004       1220       1268        152       2616     191940   Grand Totals
-     16004       1220       1268        152       2616     191940   ELF Image Totals
-     16004       1220       1268        152          0          0   ROM Totals
+     16012       1222       1268        152       2616     191944   Grand Totals
+     16012       1222       1268        152       2616     191944   ELF Image Totals
+     16012       1222       1268        152          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                17272 (  16.87kB)
+    Total RO  Size (Code + RO Data)                17280 (  16.88kB)
     Total RW  Size (RW Data + ZI Data)              2768 (   2.70kB)
-    Total ROM Size (Code + RO Data + RW Data)      17424 (  17.02kB)
+    Total ROM Size (Code + RO Data + RW Data)      17432 (  17.02kB)
 
 ==============================================================================
 
